@@ -2,11 +2,20 @@
 // Created by 김지민 on 2023/04/28.
 //
 
+/*
+ * recursive Binary Search
+ *
+ * Design Approach: Divide and Conquer
+ * Step 1. Divide the array into 2 sub arrays
+ * Step 2. Conquer the chosen array - conquering method is also D&C
+ * Step 3. Combine the solution (X)  Step 3 is omitted in this problem
+ */
 #include <iostream>
 using namespace std;
 
+// returns the location of x in given array arr[l..r] is present, otherwise -1.
 int binarySearch(int arr[], int l, int r, int x) {
-    if (r >= 1) {
+    if (r >= l) {
         int mid = l + (r - l) / 2;
 
         if (arr[mid] == x)
@@ -18,6 +27,7 @@ int binarySearch(int arr[], int l, int r, int x) {
         return binarySearch(arr, mid + 1, r, x);
     }
 
+    //  reach here when the element is not present in the array
     return -1;
 }
 
