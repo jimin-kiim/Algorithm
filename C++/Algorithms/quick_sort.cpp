@@ -61,4 +61,25 @@ int main() {
 
 /*
  * 3. Analysis
+ *
+ * T(n) = Divide + Conquer + Combine
+ *      = n - 1 + T(left) + T(right) + 0
+ *
+ *      = n - 1 + T(n-1) + T(1)     (worst case)
+ *      = n - 1 + T(n-1)
+ *      = T(n-2) + n - 2 + n - 1
+ *      ...
+ *      = T(1) + 1 + 2 + 3 + .. + n - 1
+ *      = T(1) + n(n-1)/2
+ *      <= O(n^2)
+ *
+ *      or
+ *
+ *      = n - 1 + T(n/2) + T(n/2)   (best case)
+ *      <= 2T(n/2)
+ *      = 2^kT(n/2^k) + kn
+ *      = nT(n/n) + nlogn
+ *      = nlogn
+ *      <=O(nlogn)
+ *
  */

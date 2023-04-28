@@ -6,15 +6,18 @@
  * merge sort
  *
  * Design Approach: Divide & Conquer
- *  Step 1. Divide the given array into more than 2 sub arrays
- *  Step 2. Conquer(Solve) each subarray
- *  Step 3. Combine the sub solutions
+ *      Step 1. Divide the given array into more than 2 sub arrays
+ *      Step 2. Conquer(Solve) each subarray
+ *      Step 3. Combine the sub solutions
+ */
+
+/*
+ * 2. Implement
  */
 #include <iostream>
 using namespace std;
 
 // merge two subarrays of array[]
-//
 void merge(int array[], int const left, int const mid, int const right) {
 
     // size of the subarrays
@@ -97,3 +100,23 @@ int main() {
     printArray(arr, arr_size);
     return 0;
 }
+
+/*
+ * 3. Analysis
+ *
+ * T(n) = Divide + Conquer + Combine
+ *      = 0 + solve Left + solve Right + Combine
+ *      = 0 + T(n/2) + T(n/2) + Combine
+ *      = 2*T(n/2) + n/2 + n/2 - 1
+ *      = 2*T(n/2) + n - 1
+ *      <= 2*T(n/2) + n
+ *      = 2(2T(n/4) + n/2) + n = 4T(n/4) + 2n
+ *      = 8T(n/8) + 3n
+ *      ...
+ *      = 2^kT(n/2^k) + kn
+ *      = nT(n/n) + nlogn  (suppose n = 2^k)
+ *      = nT(1) + nlogn
+ *      = nlogn
+ *      <= O(nlogn)
+ *
+ */

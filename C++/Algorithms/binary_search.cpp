@@ -5,11 +5,16 @@
 /*
  * recursive Binary Search
  *
- * Design Approach: Divide and Conquer
- * Step 1. Divide the array into 2 sub arrays
- * Step 2. Conquer the chosen array - conquering method is also D&C
- * Step 3. Combine the solution (X)  Step 3 is omitted in this problem
+ * 1. Design Approach: Divide and Conquer
+ *      Step 1. Divide the array into 2 sub arrays
+ *      Step 2. Conquer the chosen array - conquering method is also D&C
+ *      Step 3. Combine the solution (X)  Step 3 is omitted in this problem
  */
+
+/*
+ * 2. Implement
+ */
+
 #include <iostream>
 using namespace std;
 
@@ -41,3 +46,18 @@ int main() {
         : cout << "Element is present at index " << result;
     return 0;
 }
+
+/*
+ * 3. Analysis
+ *
+ * T(n) = Divide + Conquer + Combine
+ *      = 1 + T(n/2) + 0
+ *      = 1 + 1 + T(n/4)
+ *      = 1 + 1 + 1 + T(n/8)
+ *      ...
+ *      = k + T(n/2^k)
+ *      = log2n + T(n/n) (suppose n = 2^k)
+ *      = log2n + T(1)
+ *      = log2n + 1
+ *      <= O(logn)
+ */
