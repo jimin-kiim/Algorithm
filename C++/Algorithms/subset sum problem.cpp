@@ -38,46 +38,46 @@ int comparator (const void *pLhs, const void *pRhs) {
     return (*lhs > *rhs) ? 1 : ((*lhs < *rhs) ? -1 : 0);
 }
 
-void subset_sum(int s[], int t[],
-                int s_size, int t_size,
-                int sum, int ite,
+void subset_sum(int input[], int subset[],
+                int input_size, int subset_size,
+                int sum, int idx,
                 int const target_sum) {
-    total_nodes++;
+    total_nodes++; // keep track the number of total nodes generated
 
-    if (target_sum == sum) {
-        printSubset(t, t_size);
+    if (target_sum == sum) { // valid subset is found
+        printSubset(subset, subset_size);
 
-        if (ite + 1 < s_size &&
-            sum - s[ite] + s[ite + 1] <= target_sum) {
-            subset_sum(s, t, s_size, t_size - 1, sum - s[ite], ite + 1, target_sum);
+        if (idx + 1 < input_size &&
+            sum - input[idx] + input[idx + 1] <= target_sum) { // check if creating new subset is possible
+            subset_sum(input, subset, input_size, subset_size - 1, sum - input[idx], idx + 1, target_sum);
         }
         return;
     } else {
-        if (ite < s_size && sum + s[ite] <= target_sum) {
-            for( int i = ite; i < s_size; i++) {
-                t[t_size] = s[i];
-                if (sum + s[i] <= target_sum ) {
-                    subset_sum(s, t, s_size, t_size + 1, sum + s[i], i + 1, target_sum);
+        if (idx < input_size && sum + input[idx] <= target_sum) {
+            for( int i = idx; i < input_size; i++) {
+                subset[subset_size] = input[i];
+                if (sum + input[i] <= target_sum ) {
+                    subset_sum(input, subset, input_size, subset_size + 1, sum + input[i], i + 1, target_sum);
                 }
             }
         }
     }
 }
 
-void generateSubsets(int s[], int size, int target_sum) {
-    int *tuplet_vector = (int *)malloc(size * sizeof(int));
+void generateSubsets(int input[], int size, int target_sum) {
+    int *subset = (int *)malloc(size * sizeof(int));
     int total = 0;
 
-    qsort(s, size, sizeof(int), &comparator);
+    qsort(input, size, sizeof(int), &comparator);
     for (int i = 0; i < size; i++) {
-        total += s[i];
+        total += input[i];
     }
 
-    if (s[0] <= target_sum && total >= target_sum) {
-        subset_sum(s, tuplet_vector, size, 0, 0, 0, target_sum);
+    if (input[0] <= target_sum && total >= target_sum) {
+        subset_sum(input, subset, size, 0, 0, 0, target_sum);
     }
 
-    free(tuplet_vector);
+    free(subset);
 }
 
 int main() {
