@@ -19,32 +19,34 @@
 using namespace std;
 const int N = 4;
 
-int final_path[N + 1];
-bool visited[N];
-int final_res = INT_MAX;
+int final_path[N + 1]; // storing the final solution
+bool visited[N]; // keeps track of whether the nodes are visited
+int final_res = INT_MAX; //final minimum weight of the shortest tour.
 
-void copyToFinal(int curr_path[]) {
+void copyToFinal(const int curr_path[]) {
     for (int i=0; i<N; i++) {
         final_path[i] = curr_path[i];
     }
     final_path[N] = curr_path[0];
 }
 
+// finding the minimum edge cost
 int firstMin(int adj[N][N], int i) {
     int min = INT_MAX;
     for (int k=0; k<N; k++) {
-        if (adj[i][k]<min && i != k) {
+        if (adj[i][k]<min && i != k) { // not diagonal
             min = adj[i][k];
         }
     }
     return min;
 }
 
+// finding the second minimum edge cost
 int secondMin(int adj[N][N], int i) {
     int first = INT_MAX, second = INT_MAX;
     for (int j=0; j<N; j++) {
         if (i == j) {
-            continue;
+            continue; // skips the diagonal part of the adjacency matrix
         }
 
         if (adj[i][j] <= first) {
@@ -57,13 +59,19 @@ int secondMin(int adj[N][N], int i) {
     return second;
 }
 
+/*
+ * curr_weight: the weight of the path so far
+ */
 void TSPRec(int adj[N][N], int curr_bound, int curr_weight, int level, int curr_path[]) {
-    if (level == N) {
+    if (level == N) { // covered all the nodes
 
+        // checking if there's an edge from the last vertex to the first vertex
         if (adj[curr_path[level-1]][curr_path[0]] != 0) {
-            
+
+            // total weight of the solution we got
             int curr_res = curr_weight + adj[curr_path[level-1]][curr_path[0]];
 
+            // update the final path if the current path is better
             if (curr_res < final_res) {
                 copyToFinal(curr_path);
                 final_res = curr_res;
@@ -73,11 +81,13 @@ void TSPRec(int adj[N][N], int curr_bound, int curr_weight, int level, int curr_
     }
 
     for (int i=0; i<N; i++) {
-        if(adj[curr_path[level-1]][i] != 0 && visited[i] == false) {
+
+        // not diagonal and not visited
+        if(adj[curr_path[level-1]][i] != 0 && !visited[i]) {
             int temp = curr_bound;
             curr_weight += adj[curr_path[level-1]][i];
 
-            if (level == i) {
+            if (level == 1) {
                 curr_bound -= ((firstMin(adj, curr_path[level-1]) + firstMin(adj, i))/2);
             } else {
                 curr_bound -= ((secondMin(adj, curr_path[level-1]) + firstMin(adj, i))/2);
