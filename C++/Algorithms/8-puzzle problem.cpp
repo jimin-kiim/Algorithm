@@ -11,6 +11,9 @@
  * 1. Design:
  *      Design Approach: Branch and Bound(BFS)
  *      Step 1. designing promising function
+ *              C(X) = g(X) + h(X)
+ *              g(X): cost of reaching the current node from the root
+ *              h(X): cost of reaching an answer node from X
  *      Step 2. BFS traverse, visit
  */
 
@@ -59,6 +62,8 @@ int calculateCost(int initial[N][N], int final[N][N]) {
     int count = 0;
     for (int i = 0; i < N; i++) {
         for(int j = 0; j < N; j++) {
+
+            // counting the number of mis-placed tiles
             if (initial[i][j] && initial[i][j] != final[i][j]) {
                 count++;
             }
@@ -83,6 +88,8 @@ void printPath(Node* root) {
 
 struct comp {
     bool operator() (const Node* lhs, const Node* rhs) const {
+
+        // the smaller g(X) + h(X) is, the higher it is placed.
         return (lhs->cost + lhs->level) > (rhs->cost + rhs->level);
     }
 };
@@ -90,14 +97,15 @@ struct comp {
 void solve(int initial[N][N], int x, int y, int final[N][N]) {
     priority_queue<Node*, std::vector<Node*>, comp> pq;
     Node* root = newNode(initial, x, y, x, y, 0, NULL);
-    root-> cost = calculateCost(initial, final);
+    root-> cost = calculateCost(initial, final); // calculating h(X)
 
     pq.push(root);
 
     while (!pq.empty()) {
-        Node* min = pq.top();
+        Node* min = pq.top(); // finding a live node with the least estimated cost
         pq.pop();
 
+        // min is the answer node
         if (min->cost == 0) {
             printPath(min);
             return;
