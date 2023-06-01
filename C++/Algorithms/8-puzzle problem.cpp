@@ -28,9 +28,9 @@ using namespace std;
 struct Node {
     Node* parent;
     int mat[N][N];
-    int x, y;
-    int cost;
-    int level;
+    int x, y; // coordinate of blank tile
+    int cost; // # of misplaced tiles
+    int level; // # of moves so far
 };
 
 int printMatrix(int mat[N][N]) {
@@ -42,6 +42,7 @@ int printMatrix(int mat[N][N]) {
     }
 }
 
+// allocating new node
 Node* newNode(int mat[N][N], int x, int y, int newX, int newY, int level, Node* parent) {
     Node* node = new Node;
     node->parent = parent;
@@ -58,6 +59,7 @@ Node* newNode(int mat[N][N], int x, int y, int newX, int newY, int level, Node* 
 int row[] = {1, 0, -1, 0};
 int col[] = {0, -1, 0, 1};
 
+// calculating # of misplaced tiles
 int calculateCost(int initial[N][N], int final[N][N]) {
     int count = 0;
     for (int i = 0; i < N; i++) {
@@ -72,6 +74,7 @@ int calculateCost(int initial[N][N], int final[N][N]) {
     return count;
 }
 
+// check if (x, y) is a valid matrix coordinate
 int isSafe(int x, int y) {
     return (x >= 0 && x < N && y >= 0 && y < N);
 }
