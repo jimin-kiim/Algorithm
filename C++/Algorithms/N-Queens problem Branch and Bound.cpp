@@ -15,7 +15,6 @@
 /*
  * 2. Implementation
  */
-
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -35,9 +34,10 @@ bool isSafe(const vector<int>& queens, int row, int col) {
     return true;
 }
 
-vector<vector<int> > solveNQueens(int n) {
-    vector<vector<int> > solutions;
-    queue<State> states;
+vector<int> solveNQueens(int n) {
+    vector<int> queens(n, -1); // to store column positions of queens
+    // queens[row] : the column position of the queen in the row-th row
+    queue<State> states; // to store the states to be explored
 
     State initial_state;
     initial_state.row = 0;
@@ -48,8 +48,9 @@ vector<vector<int> > solveNQueens(int n) {
         states.pop();
 
         int current_row = current_state.row;
-        if (current_row == n) {
-            solutions.push_back(current_state.queens);
+        if (current_row == n) { // all queens have been placed
+            queens = current_state.queens;
+            break;
         } else {
             for (int col = 0; col < n; col++) {
                 if (isSafe(current_state.queens, current_row, col)) {
@@ -63,21 +64,18 @@ vector<vector<int> > solveNQueens(int n) {
         }
     }
 
-    return solutions;
+    return queens;
 }
 
-void printSolutions(const vector<vector<int> >& solutions) {
-    int num_solutions = solutions.size();
-    if (num_solutions == 0) {
-        cout << "No solutions found.";
+void printSolution(const vector<int>& queens) {
+    int n = queens.size();
+    if (queens.empty()) {
+        cout << "No solution found.";
     } else {
-        cout << "Found " << num_solutions << " solution(s):\n";
-        for (const auto& solution : solutions) {
-            for (int row = 0; row < solution.size(); row++) {
-                for (int col = 0; col < solution.size(); col++) {
-                    cout << (solution[row] == col ? "Q " : ". ");
-                }
-                cout << "\n";
+        cout << "Found a solution:\n";
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < n; col++) {
+                cout << (queens[row] == col ? "Q " : ". ");
             }
             cout << "\n";
         }
@@ -87,8 +85,8 @@ void printSolutions(const vector<vector<int> >& solutions) {
 int main() {
     int n = 4; // Board size
 
-    vector<vector<int> > solutions = solveNQueens(n);
-    printSolutions(solutions);
+    vector<int> solution = solveNQueens(n);
+    printSolution(solution);
 
     return 0;
 }
