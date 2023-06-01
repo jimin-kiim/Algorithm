@@ -42,6 +42,10 @@ bool cmp(Item a, Item b) {
     return r1 > r2;
 }
 
+// deriving h-value by relaxation.
+// relaxation: alleviating constraint
+// 0/1 KnapSack -> fractional KnapSack
+// use h* of relaxed problem as h of original problem to calculate upper bound
 int bound(Node u, int n, int W, Item arr[]) {
     if (u.weight >= W) {
         return 0;
@@ -58,6 +62,7 @@ int bound(Node u, int n, int W, Item arr[]) {
         j++;
     }
 
+    // including the last item partially for upper bound on profit
     if (j < n) {
         profit_bound += (W - totweight) * arr[j].value / arr[j].weight;
     }
@@ -68,8 +73,10 @@ int bound(Node u, int n, int W, Item arr[]) {
 int knapsack(int W, Item arr[], int n) {
     sort(arr, arr + n, cmp);
     queue<Node> Q;
-    Node u, v;
+    Node u, v; // u is for representing the current node,
+    // v is for its child nodes
 
+    // starting node
     u.level = -1;
     u.profit = u.weight = 0;
     Q.push(u);
@@ -79,24 +86,30 @@ int knapsack(int W, Item arr[], int n) {
         u = Q.front();
         Q.pop();
 
+        // assigning level 0 for the starting node
         if (u.level == -1) {
             v.level = 0;
         }
 
+        // the last node
         if (u.level == n - 1) {
             continue;
         }
 
+        // not the last node
         v.level = u.level + 1;
         v.weight = u.weight + arr[v.level].weight;
         v.profit = u.profit + arr[v.level].value;
 
+        // if cumulated weight is lass than W
+        // and the profit is greater than the previous profit
         if (v.weight <= W && v.profit > maxProfit) {
             maxProfit = v.profit;
         }
 
         v.bound = bound(v, n, W, arr);
 
+        // if the bound value is greater than the profit, push into queue
         if (v.bound > maxProfit) {
             Q.push(v);
         }
