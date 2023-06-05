@@ -53,7 +53,7 @@ void subset_sum(int input[], int subset[],
         }
         return;
     } else {
-        if (idx < input_size && sum + input[idx] <= target_sum) {
+        if (idx < input_size && sum + input[idx] <= target_sum) { // didn't reach the leaf node yet && available to continue
             for( int i = idx; i < input_size; i++) {
                 subset[subset_size] = input[i];
                 if (sum + input[i] <= target_sum ) {
@@ -81,8 +81,10 @@ void generateSubsets(int input[], int size, int target_sum) {
 }
 
 int main() {
-    int weights[] = {15, 22, 14, 26, 32, 9, 16, 8 };
-    int target = 53;
+//    int weights[] = {15, 22, 14, 26, 32, 9, 16, 8 };
+//    int target = 53;
+    int weights[] = {3, 4, 5, 6};
+    int target = 13;
     int size = ARRAYSIZE(weights);
     generateSubsets(weights, size, target);
     cout << "Nodes generated " << total_nodes;
