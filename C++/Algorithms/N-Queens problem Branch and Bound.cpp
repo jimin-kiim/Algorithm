@@ -52,13 +52,22 @@ vector<int> solveNQueens(int n) {
             queens = current_state.queens;
             break;
         } else {
-            for (int col = 0; col < n; col++) {
+            for (int col = 0; col < n; col++) { // iterating cols in a row
                 if (isSafe(current_state.queens, current_row, col)) {
                     State new_state = current_state;
-                    new_state.queens.push_back(col);
-                    new_state.row++;
+                    new_state.queens.push_back(col); // placing a queen in the col.
+                    new_state.row++; // next row
 
                     states.push(new_state);
+
+                    // Printing the state for tracing
+                    std::cout << "State: queens = [";
+                    for (int i = 0; i < new_state.queens.size(); i++) {
+                        std::cout << new_state.queens[i];
+                        if (i != new_state.queens.size() - 1)
+                            std::cout << ", ";
+                    }
+                    std::cout << "], row = " << new_state.row << "\n";
                 }
             }
         }
