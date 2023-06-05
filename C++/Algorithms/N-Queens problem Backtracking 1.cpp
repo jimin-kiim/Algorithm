@@ -35,7 +35,7 @@ void printSolution(int board[N][N]) {
 }
 
 // checking if a queen can be placed on board[row][col]
-// this function if called when "col" queens are already plcaed in columns from 0 to col - 1
+// this function is called when "col" queens are already placed in columns from 0 to col - 1
 // so we need to check only left side for attacking queens
 bool isSafe(int board[N][N], int row, int col) {
     int i, j;
@@ -74,7 +74,8 @@ bool solveNQUtil(int board[N][N], int col) {
 
             // placing the queen
             board[i][col] = 1;
-
+            printSolution(board);
+            cout << endl;
             // recur to place rest of the queens
             if (solveNQUtil(board, col + 1))
                 return true;
