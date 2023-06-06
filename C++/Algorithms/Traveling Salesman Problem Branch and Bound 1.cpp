@@ -6,10 +6,8 @@
  * Traveling Salesman Problem(TSP)
  * finding the shortest possible tour that visits every city exactly once and returns to the starting point.
  *
- * 1. Design:
- *      Design Approach: Branch and Bound(BFS)
- *      Step 1. designing promising function
- *      Step 2. BFS traverse, visit
+ * DFS + Branch and Bound Technique
+ *
  */
 
 /*
@@ -86,22 +84,26 @@ void TSPRec(int adj[N][N], int curr_bound, int curr_weight, int level, int curr_
         if(adj[curr_path[level-1]][i] != 0 && !visited[i]) {
             int temp = curr_bound;
             curr_weight += adj[curr_path[level-1]][i];
-
+            cout << curr_weight << endl;
             if (level == 1) {
+                cout << "!!!! "<< curr_path[level-1]<< " i "<< i << endl;
                 curr_bound -= ((firstMin(adj, curr_path[level-1]) + firstMin(adj, i))/2);
             } else {
+                cout << "!!!! "<< curr_path[level-1]<< " i "<< i << endl;
                 curr_bound -= ((secondMin(adj, curr_path[level-1]) + firstMin(adj, i))/2);
             }
 
             if (curr_bound + curr_weight < final_res) {
                 curr_path[level] = i;
                 visited[i] = true;
+                cout << "curr bound " << curr_bound << "curr_weight " << curr_weight << "curr_path " << curr_path[level] << endl;
 
                 TSPRec(adj, curr_bound, curr_weight, level+1, curr_path);
             }
 
             curr_weight -= adj[curr_path[level-1]][i];
             curr_bound = temp;
+
 
             memset(visited, false, sizeof(visited));
             for (int j=0; j<=level-1; j++) {
@@ -120,6 +122,7 @@ void TSP(int adj[N][N]) {
 
     for (int i=0; i<N; i++) {
         curr_bound += (firstMin(adj, i) + secondMin(adj, i));
+//        cout << "curr bound" <<curr_bound << endl;
     }
 
     curr_bound = (curr_bound&1)? curr_bound/2 + 1 : curr_bound/2;
