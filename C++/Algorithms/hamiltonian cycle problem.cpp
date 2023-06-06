@@ -43,8 +43,13 @@ bool hamCycleUtil(bool graph[V][V], int path[], int pos) {
 
     // all vertices are included in the cycle
     if (pos == V) {
+
         // is there an edge between the vertex lastly included and the first vertex
-        return graph[path[pos - 1]][path[0]] == 1 ? true: false;
+        if (graph[path[pos - 1]][path[0]] == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     for (int v = 1; v < V; v++) { // as 0 is a starting point, can start from 1
@@ -59,7 +64,7 @@ bool hamCycleUtil(bool graph[V][V], int path[], int pos) {
     return false;
 }
 
-// there may be more than one solutions, this function prints one of the feasible sollutions.
+// there may be more than one solution, this function prints one of the feasible solutions.
 bool hamCycle(bool graph[V][V]) {
     int *path = new int[V];
     for (int i = 0; i < V; i++)
