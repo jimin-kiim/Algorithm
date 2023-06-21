@@ -3,15 +3,18 @@
 
   Key steps for this is modeling the problem, designing and analyzing the algorithm. There already exist classical[fundamental] algorithms and classic problems that are classified according to their difficulty. Handling new problems we ecounter, we can make use of the sets of classic problems and their solution algorithms. 
 
+- [Foundation Introduction][Foundation Introduction]
+- [Design and Analysis of Alg.][Design and Analysis of Alg.]
+  - Brute Force
+  - [Divide and Conquer][Divide and Conquer]
+  - [Dynamic Programming][Dynamic Programming]
+  - [Greedy][Greedy]
+  - [Backtracking][Backtracking]
+  - [Branch and Bound][Branch and Bound]
+  - [NP Theory and Approximation][NP Theory and Approximation]
 
-- BF
-- [Divide and Conquer][Divide and Conquer]
-- [Dynamic Programming][Dynamic Programming]
-- [Greedy][Greedy]
-- [Backtracking][Backtracking]
-- [Branch and Bound][Branch and Bound]
-- [NP Theory and Approximation][NP Theory and Approximation]
-
+[Foundation Introduction]: https://github.com/jimin-kiim/Algorithm/issues/1#issue-1533143261
+[Design and Analysis of Alg.]: https://github.com/jimin-kiim/Algorithm/issues/3#issue-1687966153
 [NP Theory and Approximation]: https://github.com/jimin-kiim/Algorithm/issues/15#issue-1725031637
 [Branch and Bound]: https://github.com/jimin-kiim/Algorithm/issues/11#issue-1709282885
 [Backtracking]: https://github.com/jimin-kiim/Algorithm/issues/10#issue-1709282767
