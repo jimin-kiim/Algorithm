@@ -12,7 +12,9 @@
   - [Backtracking][Backtracking]
   - [Branch and Bound][Branch and Bound]
   - [NP Theory and Approximation][NP Theory and Approximation]
+- [KS Problem in DP & Branch and Bound][KS Problem in DP & Branch and Bound]
 
+[KS Problem in DP & Branch and Bound]: https://github.com/jimin-kiim/Algorithm/issues/13#issuecomment-1575580502
 [Foundation Introduction]: https://github.com/jimin-kiim/Algorithm/issues/1#issue-1533143261
 [Design and Analysis of Alg.]: https://github.com/jimin-kiim/Algorithm/issues/3#issue-1687966153
 [NP Theory and Approximation]: https://github.com/jimin-kiim/Algorithm/issues/15#issue-1725031637
