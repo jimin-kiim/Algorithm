@@ -15,7 +15,7 @@ string solution(vector<int> food) {
 
     // the first half
     for (int i = 1; i < food.size(); i++) {
-        for (int j = 1; j<food[i]/2+1; j++) {
+        for (int j = 0; j < food[i]/2; j++) {
             answer.append(to_string(i));
         }
     }
@@ -23,11 +23,9 @@ string solution(vector<int> food) {
     string half_answer = answer;
 
     // water
-    for(int i = 0; i < food[0]; i++) {
-        answer.append("0");
-    }
-    
-    // remaining half
+    answer.append("0");
+
+    // the remaining half
     reverse(half_answer.begin(), half_answer.end());
     answer.append(half_answer);
     return answer;
