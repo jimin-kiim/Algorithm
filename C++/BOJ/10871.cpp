@@ -14,12 +14,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int n, x, a[10005]; // goal for PS: not writing a clean code.
+// it's solving the problem as fast as possible in the limited time
 int main () {
-    ios::sync_with_stdio(0);
+    ios::sync_with_stdio(0); // in fact, the arg type should be bool.
+    // but for PS, it doesn't matter
     cin.tie(0);
-    int n, x;
     cin >> n >> x;
-    int a[n];
     for(int i = 0; i < n; i++) {
         cin >> a[i];
     }
