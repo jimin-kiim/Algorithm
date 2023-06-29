@@ -11,12 +11,11 @@ public:
             for(int j = 0; j < magazine.size(); j++) {
                 if (ransomNote[i] == magazine[j]) {
                     magazine.replace(j, 1, "A");
-                    cout << j << " "<< magazine<< "\n";
                     break;
-                } else if (magazine[j] == 'A') {
-                    continue;
-                } else {
+                } else if (j == magazine.size() - 1) {
                     return false;
+                } else {
+                    continue;
                 }
             }
         }
