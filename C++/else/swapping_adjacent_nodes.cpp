@@ -16,18 +16,18 @@ struct ListNode {
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        if (head != NULL && head -> next != NULL) {
-            ListNode* target = head -> next;
-            if(target -> next != NULL ){
-                ListNode* rb_next_target = target -> next;
-                head-> next = swapPairs(rb_next_target);
-            } else {
-                head -> next = target -> next;
-            }
-            target -> next = head;
-            return target;
+        if (head == NULL || head -> next == NULL) {
+            return head;
         }
-        return head;
+        ListNode* target = head -> next;
+        if(target -> next != NULL ){
+            ListNode* rb_next_target = target -> next;
+            head-> next = swapPairs(rb_next_target);
+        } else {
+            head -> next = target -> next;
+        }
+        target -> next = head;
+        return target;
     }
 };
 
