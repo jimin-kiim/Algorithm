@@ -5,7 +5,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int frequency[26]; // when declared in global scope -> auomatically filled with zeros
+int frequency[26]; // declared in global scope -> automatically filled with zeros
 
 int main() {
     ios::sync_with_stdio(0);
