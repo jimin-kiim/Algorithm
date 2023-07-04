@@ -37,37 +37,6 @@ include CMakeFiles/rules.ninja
 # Logical path to working directory; prefix for absolute paths.
 
 cmake_ninja_workdir = /Users/kimjimin/Desktop/Algorithm/C++/cmake-build-debug/
-# =============================================================================
-# Object build statements for EXECUTABLE target C__
-
-
-#############################################
-# Order-only phony target for C__
-
-build cmake_object_order_depends_target_C__: phony || CMakeFiles/C__.dir
-
-build CMakeFiles/C__.dir/basics/vector.cpp.o: CXX_COMPILER__C___Debug /Users/kimjimin/Desktop/Algorithm/C++/basics/vector.cpp || cmake_object_order_depends_target_C__
-  DEP_FILE = CMakeFiles/C__.dir/basics/vector.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++17
-  OBJECT_DIR = CMakeFiles/C__.dir
-  OBJECT_FILE_DIR = CMakeFiles/C__.dir/basics
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target C__
-
-
-#############################################
-# Link the executable C__
-
-build C__: CXX_EXECUTABLE_LINKER__C___Debug CMakeFiles/C__.dir/basics/vector.cpp.o
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
-  OBJECT_DIR = CMakeFiles/C__.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = C__
-  TARGET_PDB = C__.dbg
-
 
 #############################################
 # Utility command for edit_cache
@@ -102,7 +71,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /Users/kimjimin/Desktop/Algorithm/C++/cmake-build-debug
 
-build all: phony C__
+build all: phony
 
 # =============================================================================
 # Built-in targets
