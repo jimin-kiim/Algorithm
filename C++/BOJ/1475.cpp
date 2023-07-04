@@ -14,12 +14,7 @@ int main() {
         n /= 10;
     }
 
-    if((freq[6] + freq[9])%2) {
-        freq[6] = (freq[6] + freq[9] - 1) / 2;
-        freq[9] = freq[6] + 1;
-    } else {
-        freq[6] = freq[9] = (freq[6] + freq[9]) / 2;
-    }
+    freq[6] = freq[9] = (freq[6] + freq[9] + 1) / 2;
 
     int max = 0;
     for (int i : freq) {
