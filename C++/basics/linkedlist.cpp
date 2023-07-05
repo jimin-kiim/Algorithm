@@ -31,17 +31,17 @@ void insert(int addr, int num) {
     dat[unused] = num;
     nxt[unused] = nxt[addr];
     nxt[addr] = unused;
-    pre[nxt[unused]] = unused;
+    if (nxt[unused] != -1) pre[nxt[unused]] = unused;
     pre[unused] = addr;
     unused++;
 }
 
 void erase(int addr) {
-
+    nxt[pre[addr]] = nxt[addr];
+    if (nxt[addr] != -1) pre[nxt[addr]] = pre[addr];
 }
 
 int main() {
     fill(pre, pre + MX, -1);
     fill(nxt, nxt + MX, -1);
-
 }
