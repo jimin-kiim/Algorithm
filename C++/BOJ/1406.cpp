@@ -3,7 +3,7 @@
 //
 #include <bits/stdc++.h>
 using namespace std;
-
+// n : 600,000 -> large -> using list instead of array
 int main() {
     string input;
     cin >> input;
