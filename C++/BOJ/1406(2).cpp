@@ -1,7 +1,6 @@
 //
 // Created by 김지민 on 2023/07/06.
 //
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -15,8 +14,8 @@ void insert(int addr, int num) {
     dat[unused] = num;
     nxt[unused] = nxt[addr];
     pre[unused] = addr;
-    nxt[addr] = unused;
     if (nxt[addr] != -1) pre[nxt[addr]] = unused;
+    nxt[addr] = unused;
     unused++;
 }
 
@@ -49,9 +48,6 @@ int main() {
     int steps;
     cin >> steps;
 
-    int endpoint = input.size() - 1;
-//    int cursor = endpoint;
-
     while(steps--) {
         char command, data;
         cin >> command;
@@ -60,26 +56,13 @@ int main() {
         } else if (command == 'D' && nxt[cursor] != -1) {
             cursor = nxt[cursor];
         } else if (command == 'B' && pre[cursor] != -1) {
-            erase(pre[cursor]);
+            erase(cursor);
             cursor = pre[cursor];
-//            nxt[pre[cursor]] = nxt[cursor];
-//            pre[nxt[cursor]] = pre[cursor];
         } else if (command == 'P') {
             cin >> data;
-            insert(pre[cursor], data);
+            insert(cursor, data);
             cursor = nxt[cursor];
-//            dat[unused] = data;
-//            nxt[unused] = cursor;
-//            nxt[pre[cursor]] = unused;
-//            if (cursor != unused) pre[nxt[cursor]] = unused;
-//            pre[unused] = pre[cursor];
-//            unused++;
         }
     }
-//    int pointer = nxt[0];
-//    while(pointer != -1) {
-//        cout << dat[pointer];
-//        pointer = nxt[pointer];
-//    }
     traverse();
 }
