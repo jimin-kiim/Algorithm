@@ -18,18 +18,9 @@ int main() {
             cout << "Impossible" << "\n";
             continue;
         }
-        if(first.size() >1000) {
-            cout << "Impossible" << "\n";
-            continue;
-        }
         for (int j = 0; j < first.size(); j++) {
             int count = 0;
             for (; count < second.size(); count++) {
-//                if (first[j] != second[count]) {
-//                    count++;
-//                } else {
-
-//                    continue;
                 if (first[j] == second[count]) {
                     second[count] = 'A';
                         break;
