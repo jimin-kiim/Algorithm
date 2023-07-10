@@ -1,7 +1,10 @@
 # Algorithm
-  When we face a problem, we should get the solution algorithm; a step by step procedure. And we should prove that the solution algorithm we found is the best algorithm with mathematical, systematic or logical proof. 
 
-  Key steps for this is modeling the problem, designing and analyzing the algorithm. There already exist classical[fundamental] algorithms and classic problems that are classified according to their difficulty. Handling new problems we ecounter, we can make use of the sets of classic problems and their solution algorithms. 
+When we faced with a problem, it is crucial to devise a step-by-step solution algorithm and validate its effectiveness through proofs. This entails problem modeling, algorithm design, and analysis. 
+
+Drawing from established classical algorithms and problems aids in addressing new problems efficiently. By adopting this approach, problems can be tackled systematically, providing sound solutions with evidential support.
+
+This respository contains the classical algorithms and problems and trace of practicing PS with Leetcode, BOJ and so on.
 
 - [Foundation Introduction][Foundation Introduction]
 - [Design and Analysis of Alg.][Design and Analysis of Alg.]
