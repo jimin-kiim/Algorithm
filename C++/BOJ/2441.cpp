@@ -9,10 +9,11 @@ int main() {
     cin >> n;
 
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < i; j++) {
+        int j = 0;
+        for (; j < i; j++) {
             cout << " ";
         }
-        for (int j = n - i; j > 0; j--) {
+        for (; j < n; j++) {
             cout << "*";
         }
         cout << "\n";
