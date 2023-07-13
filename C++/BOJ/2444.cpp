@@ -5,13 +5,13 @@
 using namespace std;
 
 int main() {
-    int arr[9];
-    for (int i = 0; i < 9; i++) cin >> arr[i];
+    int input;
     int max = 0;
     int max_index = 0;
     for (int i = 0; i < 9; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
+        cin >> input;
+        if (input > max) {
+            max = input;
             max_index = i + 1;
         }
     }
