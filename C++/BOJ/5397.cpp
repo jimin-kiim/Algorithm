@@ -5,17 +5,14 @@
 using namespace std;
 
 int main() {
-    int test_n;
-    cin >> test_n;
+    int n;
+    cin >> n;
 
-    while(test_n--) {
+    while(n--) {
         string input;
         cin >> input;
-//        getline(cin, input);
-//        cout << input;
 
         list<char> buffer = {};
-//        int init_input_size = input.size();
         list<char>:: iterator t = buffer.begin();
 
         for (int i = 0; i < input.size(); i++) {
@@ -23,10 +20,9 @@ int main() {
             else if (t != buffer.end() && input[i] == '>') t++;
             else if (t != buffer.begin() && input[i] == '-') {
                 t--;
-               buffer.erase(t);
+               t = buffer.erase(t);
             }
             else if (input[i] != '>' && input[i] != '<' && input[i] != '-') {
-//                if (buffer.empty()) t++;
                 buffer.insert(t, input[i]);
             }
         }
