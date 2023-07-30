@@ -8,18 +8,17 @@ int main() {
     int n;
     cin >> n;
 
-//    list<int> base;
     int tracker = 1;
-//    for (int i = 1; i < n + 1; i++) base.push_back(i);
     stack<int> s;
     bool flag = true;
+    string ans;
     while(n--) {
         int input;
         cin >> input;
         if (input >= tracker) {
             while (input >= tracker) {
                 s.push(tracker++);
-                cout << "+\n";
+                ans += "+\n";
             }
         }
         if (input != s.top()) {
@@ -27,24 +26,10 @@ int main() {
                     break;
         }
         s.pop();
-        cout << "-\n";
-//        else {
-//            while (s.top() != input) {
-//                if (s.empty()) {
-//                    flag = false;
-//                    break;
-//                }
-//                s.pop();
-//                cout << "-\n";
-//            }
-//            if (!flag) {
-//                break;
-//            }
-//            s.pop();
-//            cout << "-\n";
-//        }
+        ans +=  "-\n";
     }
     if (!flag) cout << "NO";
+    else for (char c: ans) cout << c;
 }
 
 /*
