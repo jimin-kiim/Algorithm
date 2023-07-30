@@ -16,29 +16,33 @@ int main() {
     while(n--) {
         int input;
         cin >> input;
-        if (input > tracker) {
-            while (input != tracker) {
+        if (input >= tracker) {
+            while (input >= tracker) {
                 s.push(tracker++);
                 cout << "+\n";
             }
-            tracker++;
-            cout << "+\n";
-            cout << "-\n";
-        } else {
-            while (s.top() != input) {
-                if (s.empty()) {
-                    flag = false;
-                    break;
-                }
-                s.pop();
-                cout << "-\n";
-            }
-            if (!flag) {
-                break;
-            }
-            s.pop();
-            cout << "-\n";
         }
+        if (input != s.top()) {
+            flag = false;
+                    break;
+        }
+        s.pop();
+        cout << "-\n";
+//        else {
+//            while (s.top() != input) {
+//                if (s.empty()) {
+//                    flag = false;
+//                    break;
+//                }
+//                s.pop();
+//                cout << "-\n";
+//            }
+//            if (!flag) {
+//                break;
+//            }
+//            s.pop();
+//            cout << "-\n";
+//        }
     }
     if (!flag) cout << "NO";
 }
