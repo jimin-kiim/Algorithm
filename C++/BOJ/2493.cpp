@@ -10,24 +10,16 @@ int main() {
 
     int n, height;
     cin >> n;
-    stack<int> towers;
-    int max = 0;
-    int max_height = 0;
-
+    stack<pair<int, int> > towers;
+    towers.push({100000001, 0});
     for (int i = 0; i < n; i++) {
         cin >> height;
-        if (max_height < height) {
-            max = i + 1;
-            max_height = height;
-            cout << 0;
-        } else if (towers.top() > height) { // 고쳐야 할 부분.
-            // top이 아닐 수도
-            cout << i;
-        } else {
-            cout << max;
+        while (towers.top().first < height) {
+            towers.pop();
         }
+        cout << towers.top().second;
         if (i != n - 1) cout << " ";
-        towers.push(height);
+        towers.push({height, i + 1});
     }
 }
 
