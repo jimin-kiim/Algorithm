@@ -8,13 +8,14 @@ int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n;
+    int n, input;
     cin >> n;
 
-    int nums[n];
+    vector<int> nums;
     for (int i = 0; i < n; i++) {
-        cin >> nums[i];
+        cin >> input;
+        nums.push_back(input);
     }
-    sort(nums, nums + n);
+    sort(nums.begin(), nums.end());
     for (int e: nums) cout << e << "\n";
 }
