@@ -11,11 +11,16 @@ int main() {
     int n, input;
     cin >> n;
 
-    vector<int> nums;
+    int arr[10001] = {};
     for (int i = 0; i < n; i++) {
         cin >> input;
-        nums.push_back(input);
+        arr[input] += 1;
     }
-    sort(nums.begin(), nums.end());
-    for (int e: nums) cout << e << "\n";
+
+    for (int i = 1; i < 10001; i++) {
+        int count = arr[i];
+        for (int j = 0; j < count; j++) {
+            cout << i << "\n";
+        }
+    }
 }
