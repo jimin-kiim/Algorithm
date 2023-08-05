@@ -17,21 +17,15 @@ int main() {
         int index = i;
         while (!s.empty() && s.top().first < input) {
             s.pop();
-//            ans.push_back(input);
             ans[--index] = input;
         }
         s.push({input, i});
     }
-//    cout << "!!!!!";
     while (!s.empty()) {
         int diff = s.top().second;
-//        cout << s.top().second;
-//        ans.insert(ans.begin() + diff, -1);
-//        + s.top().second
             ans[diff] = -1;
         s.pop();
     }
-//    cout << "!!!!!";
     for (int c: ans) cout << c << " ";
 }
 
