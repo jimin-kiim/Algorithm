@@ -9,23 +9,31 @@ int main() {
     cin >> n;
 
 //    vector<int> ans;
+    int a[n];
     int ans[n];
-    stack<pair<int, int>> s;
+//    stack<pair<int, int>> s;
+    stack<int> s;
+    for (int i = 0; i < n; i++) cin >> a[i];
 
-    for (int i = 0; i < n; i++) {
-        cin >> input;
-        int index = i;
-        while (!s.empty() && s.top().first < input) {
+    for (int i = n - 1; i >= 0; i--) {
+//        cin >> input;
+//        int index = i;
+        while (!s.empty() && s.top() <= a[i]) {
             s.pop();
-            ans[--index] = input;
+//            ans[--index] = input;
         }
-        s.push({input, i});
+        if (s.empty()) {
+            ans[i] = -1;
+        } else {
+            ans[i] = s.top();
+        }
+        s.push(a[i]);
     }
-    while (!s.empty()) {
-        int diff = s.top().second;
-            ans[diff] = -1;
-        s.pop();
-    }
+//    while (!s.empty()) {
+//        int diff = s.top().second;
+//            ans[diff] = -1;
+//        s.pop();
+//    }
     for (int c: ans) cout << c << " ";
 }
 
