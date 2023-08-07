@@ -5,22 +5,17 @@
 using namespace std;
 
 int main() {
-    int n, input;
+    int n;
     cin >> n;
 
-//    vector<int> ans;
     int a[n];
     int ans[n];
-//    stack<pair<int, int>> s;
     stack<int> s;
-    for (int i = 0; i < n; i++) cin >> a[i];
 
+    for (int i = 0; i < n; i++) cin >> a[i];
     for (int i = n - 1; i >= 0; i--) {
-//        cin >> input;
-//        int index = i;
         while (!s.empty() && s.top() <= a[i]) {
             s.pop();
-//            ans[--index] = input;
         }
         if (s.empty()) {
             ans[i] = -1;
@@ -29,16 +24,12 @@ int main() {
         }
         s.push(a[i]);
     }
-//    while (!s.empty()) {
-//        int diff = s.top().second;
-//            ans[diff] = -1;
-//        s.pop();
-//    }
     for (int c: ans) cout << c << " ";
 }
 
 /*
- * 스택에 있는 수: 잠재적으로 앞으로 들어올 수들보다 작을 것 같은 수들.
- * 실제로 작을 경우: pop된다. pop하는 횟수만큼 input 출력
+ * 차례로 수를 받고 역순으로 비교.
+ * 스택에 있는 수: 잠재적으로 앞으로 들어올 수들보다 클 것 같은 수들.
+ * 들어온 수가 더 클 경우: 스택 top이 pop된다.
  *
  */
