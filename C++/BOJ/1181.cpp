@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool compare(string x, string y) {
+bool compare(string& x, string& y) {
     if (x.size() == y.size()) return x < y;
     return x.size() < y.size();
 }
@@ -20,18 +20,11 @@ int main() {
     string input;
     for (int i = 0; i < n; i++){
         cin >> input;
-
-        bool is_already = false;
-        for (string e: v) {
-            if (e == input) {
-                is_already = true;
-                break;
-            }
-        }
-        if (!is_already) v.push_back(input);
+        v.push_back(input);
     }
     sort(v.begin(), v.end(), compare);
     for (int i = 0; i < n; i++) {
+        if (v[i] == v[i + 1]) continue;
         cout << v[i] << "\n";
     }
 }
