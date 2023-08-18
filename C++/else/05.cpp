@@ -18,13 +18,13 @@ int main() {
         cin >> input;
         const int decimal = input;
 
-        string binary = bitset<8>(decimal).to_string();
+        string binary = bitset<21>(decimal).to_string();
         for (char c: binary) {
             if (c == '1') count++;
         }
         v.push_back({count, input});
     }
 
-    sort(v.begin(), v.end());
-    cout << v[k];
+    sort(v.begin(), v.end(), greater<>());
+    cout << v[k - 1].second;
 }
