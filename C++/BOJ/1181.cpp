@@ -4,6 +4,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool compare(string x, string y) {
+    if (x.size() == y.size()) return x < y;
+    return x.size() < y.size();
+}
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -11,16 +16,22 @@ int main() {
     int n;
     cin >> n;
 
-    vector<pair<int, string> > v;
+    vector<string> v;
     string input;
-    while (n--) {
+    for (int i = 0; i < n; i++){
         cin >> input;
-        int length = input.size();
-        v.push_back({length, input});
-    }
 
-    sort(v.begin(), v.end());
+        bool is_already = false;
+        for (string e: v) {
+            if (e == input) {
+                is_already = true;
+                break;
+            }
+        }
+        if (!is_already) v.push_back(input);
+    }
+    sort(v.begin(), v.end(), compare);
     for (int i = 0; i < n; i++) {
-        cout << v[i].second << "\n";
+        cout << v[i] << "\n";
     }
 }
