@@ -13,16 +13,18 @@ int main() {
     vector<pair<int, int> > v;
 
     while (n--) {
-        const int input;
+        int input;
         int count = 0;
         cin >> input;
-        string binary = bitset<input>(decimal).to_string();
+        const int decimal = input;
+
+        string binary = bitset<8>(decimal).to_string();
         for (char c: binary) {
-            if (c == "1") count++;
+            if (c == '1') count++;
         }
-        v.push_back(input, count);
+        v.push_back({count, input});
     }
 
-    sort(v.begin(), v.end(), second);
+    sort(v.begin(), v.end());
     cout << v[k];
 }
