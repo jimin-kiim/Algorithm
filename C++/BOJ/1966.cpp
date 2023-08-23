@@ -4,6 +4,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool isTarget(pair<int, bool>& a) {
+    return a.second == true;
+}
+
 int main() {
     int n;
     cin >> n;
@@ -12,14 +16,17 @@ int main() {
     int input;
     while (n--) {
         cin >> num >> index;
-        vector<int> nums;
-        while (num--) {
+        vector<pair<int, bool> > nums;
+        for (int i = 0; i < num; i++) {
             cin >> input;
-            nums.push_back(input);
+            if (i == index) {
+                nums.push_back({input, true});
+            } else {
+                nums.push_back({input, false});
+            }
         }
-        int target = nums[index];
-        sort(nums.begin(), nums.end(), greater<int>());
-        auto it = find(nums.begin(), nums.end(), target);
+        sort(nums.rbegin(), nums.rend());
+        auto it = find_if(nums.begin(), nums.end(), isTarget);
         cout << it - nums.begin() + 1 << "\n";
     }
 }
