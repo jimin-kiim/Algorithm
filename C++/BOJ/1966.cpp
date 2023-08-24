@@ -4,8 +4,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isTarget(pair<int, bool>& a) {
-    return a.second == true;
+int print(deque<pair<int, bool> >& d, vector<int>& p) {
+    int count = 0;
+    while (1) {
+        if (d.front().first != p.back()) {
+            d.push_back(d.front());
+            d.pop_front();
+        } else {
+            if (d.front().second == true) {
+                cout << ++count << "\n";
+                return 0;
+            } else {
+                d.pop_front();
+                count++;
+                p.pop_back();
+            }
+        }
+    }
 }
 
 int main() {
@@ -16,17 +31,18 @@ int main() {
     int input;
     while (n--) {
         cin >> num >> index;
-        vector<pair<int, bool> > nums;
+        deque<pair<int, bool> > d;
+        vector<int> p_list;
         for (int i = 0; i < num; i++) {
             cin >> input;
             if (i == index) {
-                nums.push_back({input, true});
+                d.push_back({input, true});
             } else {
-                nums.push_back({input, false});
+                d.push_back({input, false});
             }
+            p_list.push_back(input);
         }
-        sort(nums.rbegin(), nums.rend());
-        auto it = find_if(nums.begin(), nums.end(), isTarget);
-        cout << it - nums.begin() + 1 << "\n";
+        sort(p_list.begin(), p_list.end());
+        print(d, p_list);
     }
 }
