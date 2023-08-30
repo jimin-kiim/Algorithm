@@ -6,23 +6,18 @@ using namespace std;
 
 int k;
 int result[6];
-bool is_used[50];
 int palette[14];
 
-void func(int n) {
+void func(int n, int cur) {
     if (n == 6) {
         for (int i = 0; i < 6; i++) cout << result[i] << " ";
         cout << "\n";
         return;
     }
 
-    for (int i = 0; i < k; i++) {
-        if(!is_used[palette[i]]) {
+    for (int i = cur; i < k; i++) {
             result[n] = palette[i];
-            is_used[palette[i]] = 1;
-            func(n + 1);
-            is_used[palette[i]] = 0;
-        }
+            func(n + 1, i + 1);
     }
 }
 
@@ -35,8 +30,7 @@ int main() {
         if (k == 0) break;
 
         for (int i = 0; i < k; i++) cin >> palette[i];
-        func(0);
+        func(0, 0);
         cout << "\n";
     }
-
 }
