@@ -4,12 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool is_primary_number(int n) {
-    for (int i = 2; i <= pow(n, 0.5); i++) {
-        if (n % i == 0) return false;
-    }
-    return true;
-}
+int arr[1000001];
 
 int main() {
     ios::sync_with_stdio(0);
@@ -17,7 +12,17 @@ int main() {
 
     int m, n;
     cin >> m >> n;
+    for (int i = 2; i <= n; i++) {
+        arr[i] = i;
+    }
+
+    for (int i = 2; i <= n; i++) {
+        if (arr[i] == 0) continue;
+        for (int j = 2*i; j <= n; j += i) {
+            arr[j] = 0;
+        }
+    }
     for (int i = m; i <= n; i++) {
-        if (is_primary_number(i)) cout << i << "\n";
+        if (arr[i] != 0) cout << i << "\n";
     }
 }
