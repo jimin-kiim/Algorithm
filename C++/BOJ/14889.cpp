@@ -6,21 +6,22 @@ using namespace std;
 
 int min_val = 150;
 int n;
-//vector<int> start;
-int palette[21];
+vector<int> s;
+vector<int> l;
 int arr[21][21];
 
-void func(int cur, int size) {
+void func(int cur, vector<int>& s, vector<int>& l) {
     int start = 0;
     int link = 0;
-    if (size == n / 2) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i != j && palette[i] == 1 && palette[i] == palette[j]) {
-                    start += arr[i][j];
-                } else if (i != j && palette[i] == 0 && palette[i] == palette[j]) {
-                    link += arr[i][j];
-                }
+    if (s.size() == n / 2) {
+        for (int e1: s) {
+            for (int e2: s) {
+                start += arr[e1][e2];
+            }
+        }
+        for (int e1: l) {
+            for (int e2: l) {
+                link += arr[e1][e2];
             }
         }
         int dif = start - link;
@@ -29,17 +30,16 @@ void func(int cur, int size) {
         } else {
             if (dif < min_val) min_val = dif;
         }
+        return;
     }
-//    else if (cur == n) {
-//        start.erase(start.begin(), start.end());
-//        return;
-//    }
     for (int i = cur; i <= n; i++) {
-        func(cur + 1, size);
-//        s.push_back(cur)
-        palette[cur] = 1;
-        func(cur + 1, size + 1);
-        palette[cur] = 0;
+        l.push_back(cur);
+        func(cur + 1,  s, l);
+        l.pop_back();
+
+        s.push_back(cur);
+        func(cur + 1, s, l);
+        s.pop_back();
     }
 }
 
@@ -53,8 +53,6 @@ int main() {
             cin >> arr[i][j];
         }
     }
-    func(0, 0);
+    func(0, s, l);
     cout << min_val;
 }
-
-// 4C2 조합 -> dfs
