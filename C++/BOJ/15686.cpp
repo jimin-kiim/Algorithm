@@ -28,8 +28,8 @@ int main() {
 
     int ans = 999999; // 도시의 치킨 거리의 최솟값
     for (int k = m; k > 0; k--) { // 남겨둘 치킨 집의 개수 M .. 1
-        fill(is_survived, is_survived + k, 1); // 남겨둔 치킨 집
-        fill(is_survived + k, is_survived + chicken.size(), 0); // 폐업된 치킨 집
+        fill(is_survived, is_survived + chicken.size(), 1);
+        fill(is_survived, is_survived + chicken.size() - k, 0); // 치킨 집 폐업
         do {
             int city_chicken = 0; // 도시의 치킨 거리
             for (int i = 0; i < house.size(); i++) {
