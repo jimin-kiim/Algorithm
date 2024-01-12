@@ -4,24 +4,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int recursive_function(int a, int b, int c, int count, int result);
+int recursive_function(int count, int result);
+int a, b, c;
 
 int main() {
     ios:: sync_with_stdio(0);
     cin.tie(0);
 
-    int a, b, c;
     cin >> a >> b >> c;
-    int result = recursive_function(a, b, c, 1, a);
+    int result = recursive_function(1, a);
     cout << result;
 }
 
-int recursive_function(int a, int b, int c, int count, int result) {
-    if (count >= b)
-        return result;
+int recursive_function(int count, int result) {
+    if (result >= c) result %= c;
+    if (result == 0) return result;
+    if (count >= b) return result;
     result *= a;
-    if (result >= c)  result %= c;
-    return recursive_function(a, b, c, ++count, result);
+    return recursive_function(++count, result);
 }
 
 
