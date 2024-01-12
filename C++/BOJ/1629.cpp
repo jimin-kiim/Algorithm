@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int recursive_function(int count, int result);
+int recursive_function(int count, long long result);
 int a, b, c;
 
 int main() {
@@ -16,7 +16,7 @@ int main() {
     cout << result;
 }
 
-int recursive_function(int count, int result) {
+int recursive_function(int count, long long result) {
     if (result >= c) result %= c;
     if (result == 0) return result;
     if (count >= b) return result;
