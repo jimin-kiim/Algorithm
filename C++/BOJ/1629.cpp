@@ -4,33 +4,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long recursive_function(int a, int b, int c);
+using ll = long long;
+
+ll recursive_function(int b, int e, int m);
 
 int main() {
     ios:: sync_with_stdio(0);
     cin.tie(0);
 
-    int a, b, c;
-    cin >> a >> b >> c;
-    int result = recursive_function(a, b, c);
+    int base, exp, mod;
+    cin >> base >> exp >> mod;
+    int result = recursive_function(base, exp, mod);
     cout << result;
 }
 
-long long recursive_function(int a, int b, int c) {
-    if (b == 1) return a % c;
-    long long temp = recursive_function(a, b / 2, c);
-    temp = temp * temp % c;
-    if (b % 2 == 0) return temp;
-    return temp * a % c;
+ll recursive_function(int b, int e, int m) {
+    if (e == 1) return b % m;
+    ll temp = recursive_function(b, e / 2, m);
+    temp = temp * temp % m;
+    if (e % 2 == 0) return temp;
+    return temp * b % m;
 }
-// 6 36->10 60->8 48->9 54->2 12 72->7
 
 /* 6 11 13
+ * 6 36->10 60->8 48->9 54->2 12 72->7 ... ? ?
  *
  * 10 ^ 11 % c = d
  * 10 ^ 11  = x * c + d
- * 10 ^ 5.5 * 10 ^ 5.5
- * 10 ^ 2.5 * 10 ^ 2.5
+ * 10 ^ 5.5 * 10 ^ 5.5  ..?? (X)
+ * 10 ^ 5 * 10 ^ 5 * 10
+ * 10 ^ 2 * 10 ^ 2 * 10 ...
  *
  * 2 ^ 4 % 3
  * 2 ^ 2 * 2 ^ 2
