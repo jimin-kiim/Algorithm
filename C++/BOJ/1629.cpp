@@ -19,7 +19,7 @@ int main() {
 long long recursive_function(int a, int b, int c) {
     if (b == 1) return a % c;
     long long temp = recursive_function(a, b / 2, c);
-    temp *=temp % c;
+    temp = temp * temp % c;
     if (b % 2 == 0) return temp;
     return temp * a % c;
 }
