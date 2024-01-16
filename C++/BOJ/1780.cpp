@@ -7,8 +7,7 @@ using namespace std;
 
 void recursive_function(int row, int col, int size);
 int n;
-int arr[2188][2188];
-// 3 ^ 7
+int arr[2188][2188]; // 3 ^ 7
 int result[3];
 
 int main() {
@@ -27,26 +26,29 @@ int main() {
     cout << result[0] << "\n" << result[1] << "\n" << result[2];
 }
 
-void recursive_function(int row, int col, int size) {
-    if (size == 1) {
-        int val = arr[row][col];
+bool is_single_page(int x, int y, int size) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (arr[x][y] != arr[x + i][y + j]) return false;
+        }
+    }
+    return true;
+}
+
+void recursive_function(int x, int y, int size) {
+    bool isSinglePage = is_single_page(x, y, size);
+    if (isSinglePage == true) {
+        int val = arr[x][y];
         result[val + 1]++;
+//        cout << val << " " << result[val + 1] << "\n";
         return;
     }
-    bool flag = true;
-    size = size / 3;
-    if (arr[row][col + size] != arr[row][col + size - 1] || arr[row][col + size * 2] != arr[row][col + size * 2 - 1]) {
-        for (int i = 0;  i < 3; i++) recursive_function(row, col + size * i, size);
-        flag = false;
-    }
-    if (arr[row + size][col] != arr[row + size - 1][col] || arr[row + size * 2][col] != arr[row + size * 2 - 1][col]) {
-        for (int i = 0;  i < 3; i++) recursive_function(row  + size * i, col, size);
-        flag = false;
-    }
-    if (flag) {
-        int val = arr[row][col];
-        result[val + 1]++;
-        return;
+
+    size /= 3;
+    for (int i = 0;  i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            recursive_function(x + size * i, y + size * j, size);
+        }
     }
 }
 
@@ -57,5 +59,10 @@ void recursive_function(int row, int col, int size) {
  * 같은 행에서 열을 옮기며 보다가 다른 수가 안 나오면 그대로 1
  *
  * if (arr[0][n / 3] != arr[0][n / 3 - 1])
+ * -> 지름길 찾으려고 한 시도.
+ * -> 에러.
+ *
+ * 내부가 모두 같은지 체크해서 모두 동일한 값이면 그 값인 페이지 개수 값 + 1
+ * 아니면 size /= 3 해서 재귀.
  *
  */
