@@ -16,13 +16,10 @@ int main() {
     cin >> n;
 
     for (int i = 0; i < n; i++) {
-        int input;
+        string input;
         cin >> input;
         for (int j = 0; j < n; j++) {
-            int modulo = pow(10, n - j - 1);
-            int bit = input / modulo;
-            arr[i][j] = bit;
-            input %= modulo;
+            arr[i][j] = input[j] - '0';
         }
     }
 
