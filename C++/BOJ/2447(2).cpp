@@ -22,31 +22,16 @@ int main() {
 }
 
 void print(int x, int y, int size) {
-    if ((x / size) % 3 == 1 && (y / size) % 3 == 1) {
+    if ((x / size) % 3 == 1 && (y / size) % 3 == 1) { // 종료 조건 1 (최소 단위 여부와 상관 없는 종료 조건)
         cout << " ";
         return;
     }
-    if (size == 1) {
+    if (size == 1) { // 종료 조건 2 (최소 단위 도달 시)
         cout << "*";
         return;
     }
 
+    // 최소 단위 도달을 위한 재귀 호출
     size /= 3;
     print(x, y, size);
-}
-
-void recursive_function(int x, int y, int size) {
-    if ((x / size) % 3 == 1 && (y / size) % 3 == 1) cout << " ";
-    if (size == 1) {
-        cout << "*";
-        if (x == n - 1) cout << "\n";
-        return;
-    }
-
-    size /= 3;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            recursive_function(x + size * i, y + size * j, size);
-        }
-    }
 }
