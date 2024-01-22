@@ -11,54 +11,47 @@ int main() {
     string input;
     cin >> input;
 
-    string result = "";
+    // 시작이 대문자일 때
+    if (isupper(input[0])) {
+        cout << "Error!";
+        return 0;
+    }
+
+    // 맨 처음이 _로 시작할 때
+    if (input[0] == '_') {
+        cout << "Error!";
+        return 0;
+    }
+
+    // 마지막이 _로 끝날 때
+    if (input[input.size() - 1] == '_') {
+        cout << "Error!";
+        return 0;
+    }
+
+    // _가 연속으로 있을 때
+    if (input.find("__") != string::npos) {
+        cout << "Error!";
+        return 0;
+    }
+
+    string result;
 
     bool should_be_capital = false;
-    bool did_capital_appear = false;
-    bool did_underscore_appear = false;
+    bool is_java = false;
+    bool is_cpp = false;
 
     for (int i = 0; i < input.size(); i++) {
         char value = input[i];
 
-        // 시작이 대문자일 때
-        if (i == 0 && isupper(value)) {
+        // java인데 _등장
+        if (is_java && value == '_') {
             cout << "Error!";
             return 0;
         }
 
-        // 맨 처음이 _로 시작할 때
-        if (i == 0 && value == '_') {
-            cout << "Error!";
-            return 0;
-        }
-
-        // 마지막이 _로 끝날 때
-        if (value == '_' && i == input.size() - 1) {
-            cout << "Error!";
-            return 0;
-        }
-
-        // 맨 처음에 소문자로 시작할 땐 소문자 그대로 저장
-        if (!should_be_capital && islower(value) == true) {
-            result += value;
-            continue;
-        }
-
-        // 처음 _가 등장했을 때
-
-        if (did_capital_appear && value == '_') {
-            cout << "Error!";
-            return 0;
-        }
-
-        if (!should_be_capital && value == '_') {
-            should_be_capital = true;
-            did_underscore_appear = true;
-            continue;
-        }
-
-        // _가 연속해서 등장했을 때
-        if (should_be_capital && value == '_') {
+        // cpp인데 대문자 등장
+        if (is_cpp && isupper(value)) {
             cout << "Error!";
             return 0;
         }
@@ -69,10 +62,18 @@ int main() {
             return 0;
         }
 
-        // _ 등장한 적이 있는데 대문자 나왔을 때
-        if (did_underscore_appear && isupper(value)) {
-            cout << "Error!";
-            return 0;
+
+
+        // 대문자가 되어야하는 조건이 아닌 소문자는 그대로 저장
+        if (!should_be_capital && islower(value)) {
+            result += value;
+            continue;
+        }
+
+        if (value == '_') {
+            should_be_capital = true;
+            is_cpp = true;
+            continue;
         }
 
         // _다음 문자는 대문자로 변환해서 저장
@@ -84,12 +85,11 @@ int main() {
 
         // _ 등장한 적 없고 대문자 나왔을 때
         if (isupper(value)) {
-            did_capital_appear = true;
+            is_java = true;
             result += "_";
             result += tolower(value);
         }
     }
-
     cout << result;
 }
 
