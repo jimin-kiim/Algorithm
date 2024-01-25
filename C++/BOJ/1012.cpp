@@ -7,10 +7,8 @@ using namespace std;
 #define X first
 #define Y second
 
-int t;
 int n, m;
-int k;
-int count_worm = 0;
+int count_worm;
 
 int board[50][50];
 bool vis[50][50];
@@ -31,10 +29,13 @@ int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
+    int t;
     cin >> t;
     for (int i = 0; i < t; i++) {
         initialize_boards();
         count_worm = 0;
+
+        int k;
         cin >> n >> m >> k;
 
         int x, y;
@@ -45,13 +46,12 @@ int main() {
 
         count_worms();
         cout << count_worm;
+        if (i != t - 1) cout << "\n";
     }
 }
 
 void count_worms() {
     queue<pair<int, int> > q;
-//    vis[0][0] = 1;
-//    q.push({0, 0});
 
     // 배추 영역 시작점 찾기
     for (int i = 0; i < n; i++) {
@@ -74,7 +74,7 @@ void count_worms() {
                     int ny = cur.Y + dy[dir];
 
                     if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-                    if (vis[nx][ny] || board[nx][ny] != 1) continue;
+                    if (vis[nx][ny] || board[nx][ny] == 0) continue;
 
                     vis[nx][ny] = 1;
                     q.push({nx, ny});
