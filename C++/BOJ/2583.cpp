@@ -24,12 +24,12 @@ void color_rectangle(int x1, int y1, int x2, int y2) {
             board[i][j] = 1;
         }
     }
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cout << board[i][j] << " ";
-        }
-        cout << "\n";
-    }
+//    for (int i = 0; i < n; i++) {
+//        for (int j = 0; j < m; j++) {
+//            cout << board[i][j] << " ";
+//        }
+//        cout << "\n";
+//    }
 }
 
 void count_space();
@@ -39,7 +39,7 @@ int main() {
     cin.tie(0);
 
     int k;
-    cin >> n >> m >> k;
+    cin >> m >> n >> k;
     for (int i = 0; i < k; i++) {
         int x1, y1, x2, y2;
         cin >> x1 >> y1 >> x2 >> y2;
@@ -85,8 +85,8 @@ void count_space() {
 
                     vis[nx][ny] = 1;
                     q.push({nx, ny});
+                    area++;
                 }
-                area++;
             }
             areas.push_back(area);
         }
