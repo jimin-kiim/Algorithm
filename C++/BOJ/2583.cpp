@@ -24,12 +24,6 @@ void color_rectangle(int x1, int y1, int x2, int y2) {
             board[i][j] = 1;
         }
     }
-//    for (int i = 0; i < n; i++) {
-//        for (int j = 0; j < m; j++) {
-//            cout << board[i][j] << " ";
-//        }
-//        cout << "\n";
-//    }
 }
 
 void count_space();
@@ -76,9 +70,8 @@ void count_space() {
 
                 // 하나의 영역 돌면서 방문 체크 + 영역 넓이 구하기
                 for (int dir = 0; dir < 4; dir++) {
-                    int nx, ny;
-                    nx = cur.X + dx[dir];
-                    ny = cur.Y + dy[dir];
+                    int nx = cur.X + dx[dir];
+                    int ny = cur.Y + dy[dir];
 
                     if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
                     if (board[nx][ny] == 1 || vis[nx][ny] == 1) continue;
