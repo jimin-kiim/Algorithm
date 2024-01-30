@@ -14,7 +14,6 @@ int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 int n, m;
-//int step;
 
 void count_step();
 
@@ -34,7 +33,6 @@ int main() {
     for (int i = 0; i < n; i++) fill(dist[i], dist[i] + m, -1);
 
     count_step();
-//    cout << step;
     cout << dist[n - 1][m - 1] +1;
     cout << "\n";
     for (int i = 0; i < n; i++) {
@@ -48,9 +46,7 @@ int main() {
 void count_step() {
     queue<pair<int, int> > q;
     q.push({0, 0});
-//    vis[0][0] = 1;
     dist[0][0] = 0;
-//    step = 1;
 
     while (!q.empty()) {
         pair<int, int> cur = q.front();
@@ -62,13 +58,8 @@ void count_step() {
 
             if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
             if (board[nx][ny] == 0 || dist[nx][ny] >= 0 ) continue;
-
-//            vis[nx][ny] = 1;
+            
             q.push({nx, ny});
-//            cout << nx << " " << ny <<"\n";
-//            step++;
-//            if (nx == n - 1 && ny == m - 1) return;
-//            break;
             dist[nx][ny] = dist[cur.X][cur.Y] + 1;
         }
     }
@@ -84,5 +75,5 @@ void count_step() {
  * 문제가 발생한다.
  *
  * 그래서 이미 다녀가지 않은 길도 지나가며 표식을 하되 무조건 step을 1 증가시키는 게 아니라
- * 실질적인 최소 거리 측정 이동 방식으로 해당 지점에 오는 데 걸리는 step을 저장해 표시를 해야 한다. 
+ * 실질적인 최소 거리 측정 이동 방식으로 해당 지점에 오는 데 걸리는 step을 저장해 표시를 해야 한다.
  */
