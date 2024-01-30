@@ -36,6 +36,13 @@ int main() {
     count_step();
 //    cout << step;
     cout << dist[n - 1][m - 1] +1;
+    cout << "\n";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << dist[i][j] << "  ";
+        }
+        cout << "\n";
+    }
 }
 
 void count_step() {
@@ -66,3 +73,16 @@ void count_step() {
         }
     }
 }
+
+/*
+ * if (board[nx][ny] == 0 || vis[nx][ny] == 1) continue;
+ * vis[nx][ny] = 1;
+ * step++;
+ *
+ * 로 할 경우 step++을 하는 데 있어 이미 다녀갔던 지점이나 막힌 길만 판단에서 제외시키는 것인데
+ * 이미 다녀가지 않은 길이지만 더 가면 최소 거리 측정에 방해가 되는 길 역시 지나간 뒤 step을 증가시키는 게 되어
+ * 문제가 발생한다.
+ *
+ * 그래서 이미 다녀가지 않은 길도 지나가며 표식을 하되 무조건 step을 1 증가시키는 게 아니라
+ * 실질적인 최소 거리 측정 이동 방식으로 해당 지점에 오는 데 걸리는 step을 저장해 표시를 해야 한다. 
+ */
