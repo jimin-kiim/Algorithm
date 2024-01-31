@@ -24,7 +24,7 @@ int main() {
     q.push(n);
     t[n] = 0;
 
-    while (!q.empty()) {
+    while (t[k] == -1) {
         int x = q.front();
         q.pop();
 
@@ -33,21 +33,18 @@ int main() {
 
         q.push(nx);
         t[nx] = t[x] + 1;
-        if (nx == k) break;
 
         nx = x + 1;
         if (t[nx] >= 0) continue;
 
         q.push(nx);
         t[nx] = t[x] + 1;
-        if (nx == k) break;
 
         nx = x * 2;
         if (t[nx] >= 0) continue;
 
         q.push(nx);
         t[nx] = t[x] + 1;
-        if (nx == k) break;
     }
     cout << t[k];
     cout << "\n";
