@@ -7,17 +7,15 @@ using namespace std;
 #define X first
 #define Y second
 
-//int board[100002];
-int t[100002];
+int t[100001];
 
-//int dir[3] = {};
 int n, k;
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    fill(t, t + 100002, -1);
+    fill(t, t + 100001, -1);
 
     cin >> n >> k;
     queue<int> q;
@@ -29,20 +27,13 @@ int main() {
         q.pop();
 
         for (int nx : {x - 1, x + 1, 2 * x}) {
-            if (t[nx] >= 0) continue;
             if (nx < 0 || nx > 100000) continue;
+            if (t[nx] >= 0) continue;
             q.push(nx);
             t[nx] = t[x] + 1;
         }
     }
-
     cout << t[k];
-    cout << "\n";
-    for (int i = 0; i < 20; i++)
-        cout << i << " ";
-    cout << "\n";
-    for (int i = 0; i < 20; i++)
-        cout << t[i] << " ";
 }
 /*
  * 5 10 20 19 18 17
@@ -54,4 +45,21 @@ int main() {
  *
  * 미로탐색 문제처럼 각 지점에서의 최소 시간 트래킹해 나가다가
  * k 도달하면 종료
+ *
+ *
+ * nx = x + 1;
+ * if (t[nx] >= 0) continue;
+ * if (nx < 0 || nx > 100000) continue;
+ * q.push(nx);
+ * t[nx] = t[x] + 1;
+ * ranged based loop을 쓰지 않을 거였다면
+ *
+ * if (t[nx] < 0)  {
+ *      if (nx >=0 && nx <= 100000) {
+ *          q.push(nx);
+ *          t[nx] = t[x] + 1;
+ *      }
+ * }
+ * 이렇게 썼어야 올바른 로직이다.
+ *
  */
