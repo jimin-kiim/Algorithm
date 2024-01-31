@@ -30,19 +30,19 @@ int main() {
 
         int nx = x - 1;
         if (t[nx] >= 0) continue;
-
+        if (nx < 0 || nx > 100000) continue;
         q.push(nx);
         t[nx] = t[x] + 1;
 
         nx = x + 1;
         if (t[nx] >= 0) continue;
-
+        if (nx < 0 || nx > 100000) continue;
         q.push(nx);
         t[nx] = t[x] + 1;
 
         nx = x * 2;
         if (t[nx] >= 0) continue;
-
+        if (nx < 0 || nx > 100000) continue;
         q.push(nx);
         t[nx] = t[x] + 1;
     }
