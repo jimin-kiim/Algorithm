@@ -4,12 +4,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// 정점 개수: n, 간선 개수: m, 시작 정점: start
 int n, m, start;
+
+// 인덱스: 정점 넘버, 데이터: 간선으로 연결된 정점 인덱스
 vector<int> adj[1001];
+
+// 인덱스: 정점 넘버, 데이터: 방문 여부
 int vis[1001];
 
-void dfs();
-void bfs();
+void dfs(); // 스택 이용
+void bfs(); // 큐 이용
 
 int main() {
     ios::sync_with_stdio(0);
@@ -24,12 +29,13 @@ int main() {
         adj[v].push_back(u);
     }
 
+    // 정점 번호 작은 것부터 방문하는 조건 적용
     for(int i = 1; i <= n; i++)
         sort(adj[i].begin(), adj[i].end());
 
     dfs();
     cout << "\n";
-    fill(vis + 1, vis + n + 1, 0);
+    fill(vis + 1, vis + n + 1, 0); // bfs 하기 전 다시 초기화
     bfs();
 }
 
@@ -45,7 +51,7 @@ void dfs() {
         cout << cur << " ";
 
         for(int i = 0; i < adj[cur].size(); i++) {
-            int next = adj[cur][adj[cur].size() - 1 - i];
+            int next = adj[cur][adj[cur].size() - 1 - i]; // 스택이라서 역순
             if (vis[next] == 1) continue;
             s.push(next);
         }
@@ -62,7 +68,7 @@ void bfs() {
         q.pop();
         cout << cur << " ";
 
-        for (int next : adj[cur]) {
+        for (int next : adj[cur]) { // 큐니까 순차적으로
             if (vis[next] == 1) continue;
             q.push(next);
             vis[next] = 1;
