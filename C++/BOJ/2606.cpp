@@ -4,14 +4,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int n;
+vector<int> arr[101];
+int vis[101];
+int num;
+int cnt;
+
+void bfs();
+void dfs();
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-
-    int n;
-    vector<int> arr[101];
-    int vis[101];
-    int num;
 
     cin >> n >> num;
     for (int i = 0; i < num; i++) {
@@ -21,11 +25,16 @@ int main() {
         arr[v].push_back(u);
     }
 
+    dfs();
+//    bfs();
+
+    cout << cnt;
+}
+
+void bfs() {
     queue<int> q;
     q.push(1);
     vis[1] = 1;
-
-    int count = 0;
 
     while (!q.empty()) {
         int cur = q.front();
@@ -33,11 +42,28 @@ int main() {
 
         for (int next: arr[cur]) {
             if (vis[next] == 1) continue;
-            count++;
+            cnt++;
             vis[next] = 1;
             q.push(next);
         }
     }
+}
 
-    cout << count;
+void dfs() {
+    stack<int> s;
+    s.push(1);
+
+    while (!s.empty()) {
+        int cur = s.top();
+        s.pop();
+        if (vis[cur] == 1) continue;
+        vis[cur] = 1;
+        if (cur != 1) cnt++;
+
+        for (int i = 0; i < arr[cur].size(); i++) {
+            int next = arr[cur][arr[cur].size() - 1 - i];
+            if (vis[next] == 1) continue;
+            s.push(next);
+        }
+    }
 }
