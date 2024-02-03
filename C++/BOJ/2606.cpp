@@ -35,6 +35,7 @@ int main() {
             if (vis[next] == 1) continue;
             count++;
             vis[next] = 1;
+            q.push(next);
         }
     }
 
