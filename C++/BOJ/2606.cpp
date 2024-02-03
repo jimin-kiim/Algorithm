@@ -12,6 +12,7 @@ int cnt;
 
 void bfs();
 void dfs();
+void dfs2(int cur);
 
 int main() {
     ios::sync_with_stdio(0);
@@ -25,8 +26,9 @@ int main() {
         arr[v].push_back(u);
     }
 
-    dfs();
 //    bfs();
+//    dfs();
+    dfs2(1);
 
     cout << cnt;
 }
@@ -65,5 +67,15 @@ void dfs() {
             if (vis[next] == 1) continue;
             s.push(next);
         }
+    }
+}
+
+void dfs2(int cur) {
+    vis[cur] = 1;
+
+    for (int next: arr[cur]) {
+        if (vis[next] == 1) continue;
+        cnt++;
+        dfs2(next);
     }
 }
