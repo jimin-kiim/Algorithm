@@ -5,7 +5,7 @@
 using namespace std;
 
 int n;
-vector<int> arr[101];
+vector<int> adj[101];
 int vis[101];
 int num;
 int cnt;
@@ -22,8 +22,8 @@ int main() {
     for (int i = 0; i < num; i++) {
         int u, v;
         cin >> u >> v;
-        arr[u].push_back(v);
-        arr[v].push_back(u);
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
 
 //    bfs();
@@ -42,7 +42,7 @@ void bfs() {
         int cur = q.front();
         q.pop();
 
-        for (int next: arr[cur]) {
+        for (int next: adj[cur]) {
             if (vis[next] == 1) continue;
             cnt++;
             vis[next] = 1;
@@ -62,8 +62,8 @@ void dfs() {
         vis[cur] = 1;
         if (cur != 1) cnt++;
 
-        for (int i = 0; i < arr[cur].size(); i++) {
-            int next = arr[cur][arr[cur].size() - 1 - i];
+        for (int i = 0; i < adj[cur].size(); i++) {
+            int next = adj[cur][adj[cur].size() - 1 - i];
             if (vis[next] == 1) continue;
             s.push(next);
         }
@@ -73,7 +73,7 @@ void dfs() {
 void dfs2(int cur) {
     vis[cur] = 1;
 
-    for (int next: arr[cur]) {
+    for (int next: adj[cur]) {
         if (vis[next] == 1) continue;
         cnt++;
         dfs2(next);
