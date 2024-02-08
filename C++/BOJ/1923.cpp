@@ -20,7 +20,7 @@ int main() {
             cin >> board[i][j];
         }
     }
-    
+
     score[1][1] = board[1][1];
 
     // dp
