@@ -4,8 +4,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int score[3001];
-int res[301];
+int score[301];
+int dp[301];
 
 int main() {
     ios::sync_with_stdio(0);
@@ -15,21 +15,15 @@ int main() {
     cin >> n;
 
     for (int i = 1; i <= n; i++) cin >> score[i];
+    
+    dp[1] = score[1];
+    dp[2] = score[2];
+    if (n > 2) dp[3] = score[3] + max(dp[1], dp[2]);
 
-    res[0] = score[0];
-    res[1] = score[1];
+    for (int i = 3; i <= n; i++)
+        dp[i] = score[i] + max(score[i - 1] + dp[i - 3], dp[i - 2]);
 
-    int consecutive_count = 0;
-    for (int i = 2; i <= n; i++) {
-        if (consecutive_count == 1) {
-            res[i] = res[i - 2] + score[i];
-            consecutive_count = 0;
-        } else {
-            res[i] = max(res[i - 1], res[i - 2]) + score[i];
-        }
-        if (res[i] == res[i - 1] + score[i]) consecutive_count++;
-    }
-    cout << res[n];
+    cout << dp[n]; // 마지막 계단에서의 누적 점수 값 출력
 }
 
 /*
