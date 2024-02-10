@@ -5,7 +5,6 @@
 using namespace std;
 
 int cost[1001][3];
-//int dp[1001];
 int dp[1001][3];
 
 int main() {
@@ -20,14 +19,7 @@ int main() {
             cin >> cost[i][j];
         }
     }
-//
-//    dp[1] = *min_element(cost[1], cost[1] + 3);
-//
-//    for (int i = 2; i <= n; i++) {
-//        for (int j = 0; j < 3; j++) {
-//            dp[i] = min(cost[i][(j + 1) % 3], cost[i][(j + 2) % 3]) + cost[]
-//        }
-//    }
+
     for (int i = 0; i < 3; i++) {
         dp[0][i] = cost[0][i];
     }
@@ -45,4 +37,11 @@ int main() {
  * 0 이면 1, 2
  * 1 이면 2, 0
  * 2 이면 0, 1
+ * -> mod 3
+ */
+
+/*
+ * dp[0] = *min_element(cost[0], cost[0] + 3)을 생각했었는데
+ * 시작을 최솟값 갖는 col로 시작하더라도 최종 누적값은 최솟값이 아닌 col에서 시작했을 때 최소가 될 수도 있기 때문에
+ * 일단 모든 dp board를 채우고 마지막 세 누적값 결과 중에서 가장 작은 걸 고르는 걸로 수정
  */
