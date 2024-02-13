@@ -4,13 +4,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//#define limit 1000000000
-//int number_line[limit + 1];
-
 // a < b
 int calculate_gcd(int a, int b) {
-    if (a == 0) return b;
-    return calculate_gcd(b % a, a);
+    if (a == 0) return b; // GCD(0, A) = A
+    return calculate_gcd(b % a, a); // GCD(A, B) = GCD(r, A)
 }
 
 int main() {
@@ -22,10 +19,11 @@ int main() {
 
     vector<int> dis;
     int input;
-    int prev = 0;
+    int prev;
+    cin >> prev;
+    n--;
     while (n--) {
         cin >> input;
-//        number_line[input] = 1;
         dis.push_back(input - prev);
         prev = input;
     }
@@ -33,15 +31,15 @@ int main() {
     sort(dis.begin(), dis.end());
 
     int gcd = dis[0];
+//    cout << gcd << "\n";
     for (int i = 1; i < dis.size(); i++) {
         gcd = calculate_gcd(gcd, dis[i]);
     }
-    cout << gcd << "\n";
+//    cout << gcd << "\n";
     int sum = 0;
     for (int i = 0; i < dis.size(); i++) {
         sum += dis[i] / gcd - 1;
     }
-
     cout << sum;
 }
 
