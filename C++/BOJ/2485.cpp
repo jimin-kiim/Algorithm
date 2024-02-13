@@ -22,6 +22,7 @@ int main() {
     int prev;
     cin >> prev;
     n--;
+
     while (n--) {
         cin >> input;
         dis.push_back(input - prev);
@@ -31,11 +32,10 @@ int main() {
     sort(dis.begin(), dis.end());
 
     int gcd = dis[0];
-//    cout << gcd << "\n";
     for (int i = 1; i < dis.size(); i++) {
         gcd = calculate_gcd(gcd, dis[i]);
     }
-//    cout << gcd << "\n";
+
     int sum = 0;
     for (int i = 0; i < dis.size(); i++) {
         sum += dis[i] / gcd - 1;
@@ -53,4 +53,14 @@ int main() {
  * dis: 2, 3, 6
  * -> 최대 공약수: 1
  * -> 1, 2, 5
+ */
+
+/*
+ * Euclidean Algorithm
+ *
+ * A = aG, B = bG (a < b)
+ * bG = aGq + r
+ * r = (b - aq)G
+ *
+ * GCD(A, B) = (r, A)
  */
