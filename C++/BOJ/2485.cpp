@@ -17,30 +17,19 @@ int main() {
     int n;
     cin >> n;
 
-    vector<int> dis;
-    int input;
-    int prev;
-    cin >> prev;
-    n--;
+    int start, prev, gcd;
 
-    while (n--) {
+    cin >> start >> prev;
+    gcd = prev - start;
+
+    for (int i = 2; i < n; i++) {
+        int input;
         cin >> input;
-        dis.push_back(input - prev);
+        gcd = calculate_gcd(gcd, input - prev);
         prev = input;
     }
 
-    sort(dis.begin(), dis.end());
-
-    int gcd = dis[0];
-    for (int i = 1; i < dis.size(); i++) {
-        gcd = calculate_gcd(gcd, dis[i]);
-    }
-
-    int sum = 0;
-    for (int i = 0; i < dis.size(); i++) {
-        sum += dis[i] / gcd - 1;
-    }
-    cout << sum;
+    cout << (prev - start) / gcd - n + 1;
 }
 
 /*
@@ -48,7 +37,10 @@ int main() {
  * -> dis: 2, 4, 6
  * -> 최대 공약수 : 2
  * -> 0, 1, 2
- * (2 / 2 - 1, 4 / 2 - 1, 6 / 2 - 1)
+ *
+ * sum (2 / 2 - 1, 4 / 2 - 1, 6 / 2 - 1)
+ * -> 3
+ * -> (last - first) / gcd - n + 1
  *
  * dis: 2, 3, 6
  * -> 최대 공약수: 1
