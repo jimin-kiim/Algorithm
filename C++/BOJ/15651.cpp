@@ -17,7 +17,6 @@ void func(int k) {
     }
 
     int start = 1;
-    if (k != 0) start = res[k - 1] + 1;
     for (int i = start; i <= n; i++) {
         res[k] = i;
         func(k + 1);
