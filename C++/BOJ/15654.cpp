@@ -1,7 +1,6 @@
 //
 // Created by 김지민 on 3/6/24.
 //
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -43,3 +42,7 @@ int main() {
     sort(palette, palette + n);
     func(0);
 }
+
+/*
+ * permutation, duplication of possible numbers not allowed, ascending order
+ */
