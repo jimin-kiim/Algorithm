@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int res[8];
+int res_indices[8];
 int palette[8];
 int is_used[8];
 
@@ -13,7 +13,7 @@ int n, m;
 void func(int k) {
     if (k == m) {
         for (int i = 0; i < m; i++) {
-            cout << res[i] << " ";
+            cout << palette[res_indices[i]] << " ";
         }
         cout << "\n";
         return;
@@ -21,7 +21,7 @@ void func(int k) {
 
     for (int i = 0; i < n; i++) {
         if (is_used[i] != 1) {
-            res[k] = palette[i];
+            res_indices[k] = i;
             is_used[i] = 1;
             func(k + 1);
             is_used[i] = 0;
