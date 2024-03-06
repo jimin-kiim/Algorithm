@@ -31,3 +31,7 @@ int main() {
     cin >> n >> m;
     func(0);
 }
+
+/*
+ * combination, duplication of possible numbers allowed, ascending order
+ */
