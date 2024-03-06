@@ -30,3 +30,7 @@ int main() {
     cin >> n >> m;
     func(0);
 }
+
+/*
+ * permutation, duplication of possible numbers allowed, ascending order
+ */
