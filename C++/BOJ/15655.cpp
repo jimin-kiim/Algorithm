@@ -5,25 +5,28 @@
 using namespace std;
 
 int n, m;
-int res[8];
+int res_indices[8];
 int palette[8];
-int start;
+int is_used[8];
 
 void func(int k) {
     if (k == m) {
         for (int i = 0; i < m; i++) {
-            cout << res[i] << " ";
+            cout << palette[res_indices[i]] << " ";
         }
         cout << "\n";
         return;
     }
 
-    int prev = start;
-    start = 0;
-    if (k != 0) start = prev + 1;
+    int start = 0;
+    if (k != 0) start = res_indices[k - 1] + 1;
     for (int i = start; i < n; i++) {
-        res[k] = palette[i];
-        func(k + 1);
+        if (is_used[i] != 1) {
+            res_indices[k] = i;
+            is_used[i] = 1;
+            func(k + 1);
+            is_used[i] = 0;
+        }
     }
 }
 
