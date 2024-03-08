@@ -10,6 +10,15 @@ char palette[15];
 
 void func(int k) {
     if (k == l) {
+        int flag = 0;
+        for (int i = 0; i < l; i++) {
+            char value = palette[res_indices[i]];
+            if (value == 'a' || value == 'e' || value == 'i' || value == 'o' || value == 'u') {
+                flag = 1;
+                break;
+            }
+        }
+        if (flag != 1) return;
         for (int i = 0; i < l; i++) {
             cout << palette[res_indices[i]];
         }
