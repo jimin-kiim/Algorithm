@@ -11,13 +11,17 @@ char palette[15];
 void func(int k) {
     if (k == l) {
         int flag = 0;
+        int vowel_count = 0;
+        int consonant_count = 0;
         for (int i = 0; i < l; i++) {
             char value = palette[res_indices[i]];
             if (value == 'a' || value == 'e' || value == 'i' || value == 'o' || value == 'u') {
-                flag = 1;
-                break;
+                vowel_count++;
+            } else {
+                consonant_count++;
             }
         }
+        if (vowel_count && consonant_count >= 2) flag = 1;
         if (flag != 1) return;
         for (int i = 0; i < l; i++) {
             cout << palette[res_indices[i]];
