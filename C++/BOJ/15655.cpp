@@ -9,7 +9,7 @@ int res_indices[8];
 int palette[8];
 int is_used[8];
 
-void func(int k) {
+void func(int start, int k) {
     if (k == m) {
         for (int i = 0; i < m; i++) {
             cout << palette[res_indices[i]] << " ";
@@ -18,13 +18,11 @@ void func(int k) {
         return;
     }
 
-    int start = 0;
-    if (k != 0) start = res_indices[k - 1] + 1;
     for (int i = start; i < n; i++) {
         if (is_used[i] != 1) {
             res_indices[k] = i;
             is_used[i] = 1;
-            func(k + 1);
+            func(i + 1, k + 1);
             is_used[i] = 0;
         }
     }
@@ -41,7 +39,7 @@ int main() {
 
     sort(palette, palette + n);
 
-    func(0);
+    func(0, 0);
 }
 
 /*
