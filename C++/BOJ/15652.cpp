@@ -7,7 +7,7 @@ using namespace std;
 int res[9];
 int n, m;
 
-void func(int k) {
+void func(int start, int k) {
     if (k == m) {
         for (int i = 0; i < m; i++) {
             cout << res[i] << " ";
@@ -16,11 +16,9 @@ void func(int k) {
         return;
     }
 
-    int start = 1;
-    if (k != 0) start = res[k - 1];
     for (int i = start; i <= n; i++) {
         res[k] = i;
-        func(k + 1);
+        func(i, k + 1);
     }
 }
 
@@ -29,7 +27,7 @@ int main() {
     cin.tie(0);
 
     cin >> n >> m;
-    func(0);
+    func(1, 0);
 }
 
 /*
