@@ -9,7 +9,7 @@ int res_indices[8];
 int palette[8];
 int is_used[8];
 
-void func(int k) {
+void func(int start, int k) {
     if (k == m) {
         for (int i = 0; i < m; i++) {
             cout << palette[res_indices[i]] << " ";
@@ -18,15 +18,13 @@ void func(int k) {
         return;
     }
 
-    int start = 0;
     int prev = 0; // consequential permutations should be unique
-    if (k != 0) start = res_indices[k - 1]; // should not be aligned in a descending order
     for (int i = start; i < n; i++) {
         if (is_used[i] != 1 && prev != palette[i]) {
             res_indices[k] = i;
             prev = palette[i];
             is_used[i] = 1;
-            func(k + 1);
+            func(i, k + 1);
             is_used[i] = 0;
         }
     }
@@ -42,7 +40,7 @@ int main() {
     }
 
     sort(palette, palette + n);
-    func(0);
+    func(0, 0);
 }
 /*
  * combination(permutation but the additional condition says that the numbers in a single permutation should not be aligned in a descending order so it ends up to be combination, at last)
