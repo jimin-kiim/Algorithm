@@ -16,8 +16,7 @@ void func(int k) {
         return;
     }
 
-    int start = 1;
-    for (int i = start; i <= n; i++) {
+    for (int i = 1; i <= n; i++) {
         res[k] = i;
         func(k + 1);
     }
