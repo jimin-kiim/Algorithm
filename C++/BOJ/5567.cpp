@@ -34,19 +34,13 @@ void bfs() {
         int cur = q.front();
         q.pop();
 
-        int flag = 0;
-        for (int closest: friends[1]) {
-            if (closest == cur) flag = 1;
-        }
-        if (!flag && cur != 1) continue;
-
         for (int f: friends[cur]) {
             if (vis[f] == 1) continue;
 
             tot_count++;
             vis[f] = 1;
 
-            q.push(f);
+            if (cur == 1) q.push(f);
         }
     }
 }
