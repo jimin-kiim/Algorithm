@@ -3,15 +3,17 @@
 //
 #include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
-long long a, b, v;
+ll a, b, v;
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     cin >> a >> b >> v;
-    long long day = a - b;
-    if (v % day == 0) cout << v / day;
-    else cout << v / day + 1;
+    ll day = a - b;
+    ll res = (v - a) / day;
+    if ((v - a) <= day) res++;
+    cout << res + 1;
 }
