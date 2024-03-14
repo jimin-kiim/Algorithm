@@ -12,8 +12,8 @@ int main() {
     cin.tie(0);
 
     cin >> a >> b >> v;
-    ll day = a - b;
-    ll res = (v - a) / day;
-    if ((v - a) <= day) res++;
-    cout << res + 1;
+    ll in_a_day = a - b;
+    ll res = (v - b) / in_a_day;
+    if ((v - b) % in_a_day != 0) res++;
+    cout << res;
 }
