@@ -13,7 +13,7 @@ int main() {
 
     cin >> a >> b >> v;
     ll in_a_day = a - b;
-    ll res = (v - b) / in_a_day;
-    if ((v - b) % in_a_day != 0) res++;
-    cout << res;
+    ll res = (v - a) / in_a_day;
+    if ((v - a) % in_a_day != 0) res++;
+    cout << res + 1;
 }
