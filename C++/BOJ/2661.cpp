@@ -21,6 +21,8 @@ void func(int k) {
     for (int i = 1; i <= 3; i++) {
         if (k != 0 && res[k - 1] == i) continue;
         if (k >= 3 && res[k - 1] == res[k - 3] && res[k - 2] == i) continue;
+        if (k >= 4 && res[k - 1] == res[k - 4] && res[k - 3] == i) continue;
+        if (k % 2 && res[k / 2] == i) continue;
         res[k] = i;
         func(k + 1);
         if (flag) return;
