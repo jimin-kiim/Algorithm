@@ -24,8 +24,8 @@ int main() {
 /*
  * dp[1]: 1 -> 1
  * dp[2]: 10 -> 1
- * dp[3]: 101: 10 + 1, 100: 10 + 0 -> 2
- * dp[4]: 1010,        1001,  1000 -> 3
+ * dp[3]: 101: 10 + 1, 100: 10 + 0 -> 2 // 1 + 01, 10 + 0
+ * dp[4]: 1010,        1001,  1000 -> 3 // 101 + 0. 10 + 01, 100 + 0
  * dp[5]: 10101, 10100,10010, 10001, 10000 -> 5
  * dp[6]: 101010,101001,101000, 100101, 100100, 100010, 100001, 100000 -> 8
  * (when the previous string ends with 1, concatenating 0 is the only case
@@ -34,6 +34,14 @@ int main() {
  * if the n is odd, dp[n - 1]
  * if the n is even, ...
  *
+ * // first approach
+ * previous
+ * ~1: + 1
+ * ~0: + 1 / + 0
  *
+ * // answer approach
+ * cases of dp[n - 1] + 0
+ * cases of dp[n - 2] + 01
  *
+ * -> dp[n] = dp[n - 1] + dp[n - 2]
  */
