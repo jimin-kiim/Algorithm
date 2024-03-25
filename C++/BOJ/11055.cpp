@@ -15,13 +15,13 @@ int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> seq[i];
+        dp[i] = seq[i];
     }
 
     for (int i = 0; i < n; i++) {
         for (int j = i - 1; j >= 0; j--) {
             if (seq[j] < seq[i]) {
-                dp[i] = seq[i] + dp[j];
-                break;
+                dp[i] = max(dp[i], seq[i] + dp[j]);
             }
         }
     }
@@ -33,4 +33,5 @@ int main() {
  * - DP 2 dimensional? -> while drawing the table, resulted out that 1D is sufficient
  * - DP 1 dimensional
  *  - for 0..i , for j..0  if j < i dp[j] + seq[i]
+ *  - value of dp[i]: when traversing up to the i-th element, the maximum sum
  */
