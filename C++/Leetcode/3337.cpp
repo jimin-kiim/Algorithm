@@ -8,13 +8,18 @@ public:
         string initial = s;
         int size = s.length();
         string updated_string;
+        char alphabet[26];
+
+        for (char c = 'a'; c <= 'z'; i++) {
+            alphabet[i] = c;
+        }
 
         while (t--) {
             for (int i = 0; i < size; i++) {
                 string in_progress;
                 int calculation = nums[updated_string[i] - 'a'];
                 for (int j = 0; j < calculation; j++) {
-                    in_progress.append([s[i] - calculation + 1]);
+                    in_progress += alphabet[s[i] - calculation + 1];
                 }
             }
             updated_string = in_progress;
