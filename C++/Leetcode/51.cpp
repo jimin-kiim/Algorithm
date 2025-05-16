@@ -3,6 +3,36 @@
 //
 class Solution {
 public:
+    bool solveNQUtil(int board[N][N], int col) {
+
+        // terminating the recurrence
+        if (col >= N)
+            return true;
+
+        for (int i = 0; i < N; i++) {
+
+            // checking if the queen can be placed on board[i][col]
+            if (isSafe(board, i, col)) {
+
+                // placing the queen
+                board[i][col] = 1;
+
+                printSolution(board);
+                cout << endl;
+
+                // recur to place rest of the queens
+                if (solveNQUtil(board, col + 1))
+                    return true;
+
+                // if placing the queen doesn't lead to a solution, remove queen
+                // BACKTRACKING
+                board[i][col] = 0;
+            }
+        }
+
+        return false;
+    }
+
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<char>> chess_board(n, vector<char> (n, '.'));
         vector<vector<string>> result;
