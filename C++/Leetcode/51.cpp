@@ -3,36 +3,6 @@
 //
 class Solution {
 public:
-    bool solveNQUtil(int board[N][N], int col) {
-
-        // terminating the recurrence
-        if (col >= N)
-            return true;
-
-        for (int i = 0; i < N; i++) {
-
-            // checking if the queen can be placed on board[i][col]
-            if (isSafe(board, i, col)) {
-
-                // placing the queen
-                board[i][col] = 1;
-
-                printSolution(board);
-                cout << endl;
-
-                // recur to place rest of the queens
-                if (solveNQUtil(board, col + 1))
-                    return true;
-
-                // if placing the queen doesn't lead to a solution, remove queen
-                // BACKTRACKING
-                board[i][col] = 0;
-            }
-        }
-
-        return false;
-    }
-
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<char>> chess_board(n, vector<char> (n, '.'));
         vector<vector<string>> result;
@@ -43,14 +13,25 @@ public:
                 // is there no Q in same column (i is same and j is different.)
                 for (int c = j - 1; c >= 0; c--) {
                     if (chess_board[i][c] == 'Q' ) {
+                        chess_board[i][j] = '.';
                         row += '.';
                         break;
                     }
                 }
 
-                // is there no Q in the same diagonal line. ()
-                for (int r = i - 1, c = j - 1; r >= 0 && c >=0; c--, r--) {
+                // is there no Q in the same diagonal line. (left)
+                for (int r = i - 1, c = j - 1; r >= 0 && c >= 0; c--, r--) {
                     if (chess_board[r][c] == 'Q') {
+                        chess_board[i][j] = '.';
+                        row += '.';
+                        break;
+                    }
+                }
+
+                // is there no Q in the same diagonal line. (right)
+                for (int r = i - 1, c = j + 1; r >= 0 && c < n; r--, c++) {
+                    if (chess_board[r][c] == 'Q') {
+                        chess_board[i][j] = '.';
                         row += '.';
                         break;
                     }
