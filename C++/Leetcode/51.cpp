@@ -20,30 +20,37 @@ public:
             }
 
             return true;
-    }
+        }
 
-    void recurrence(vector<vector<char>> chess_board, int row, int n, vector<vector<char>> & result) {
-        string result_row;
+    void recurrence(vector<vector<char>> chess_board, int row, int n, vector<vector<string>> & result) {
+        if (row >= n) {
+            vector<string> a_solution;
+//            for (int i = 0; i < n; i++) {
+//                string row_as_a_string(chess_board[i].begin(), chess_board[i].end()));
+//                a_solution.push_back(row_as_a_string);
+//            }
+            for (const auto& each_row: chess_board) {
+                a_solution.push_back(string(each_row.begin(), each_row.end())); // each row: vector<char>. convert the value into a single stirng.
+            }
+            result.push_back(a_solution);
+            return;
+        }
+
         for (int col = 0; col < n; col++) {
             if (is_valid(chess_board, row, col, n)) {
                 chess_board[row][col] = 'Q';
-                result_row += 'Q';
                recurrence(chess_board, row + 1, n, result);
             }
             chess_board[row][col] = '.';
-            result_row += '.';
         }
-        result.push_back(result_row);
     }
 
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<char>> chess_board(n, vector<char> (n, '.'));
         vector<vector<string>> result;
+        recurrence(chess_board, 0, n, result);
 
-        for (int row = 0; row < n; row++) {
-            recurrence(chess_board, row, n, result);
-        }
-        result.push_back()
+        return result;
     }
 };
 
