@@ -22,18 +22,23 @@ int main() {
     cin.tie(0);
     cin >> n >> m;
 
+    // n rows
     for (int i = 0; i < n; i++) {
         string input;
+        // getting a row as a string.
         cin >> input;
+        // storing the input in a board as a character as a unit.
         for (int j = 0; j < m; j++) {
             board[i][j] = input[j] - '0';
         }
     }
 
+    // initializing all the values in the board for storing the steps taken to get to each cell as -1.
     for (int i = 0; i < n; i++) fill(dist[i], dist[i] + m, -1);
 
     count_step();
-    cout << dist[n - 1][m - 1] +1;
+    // print out how many steps take to get to the position (N, M)
+    cout << dist[n - 1][m - 1] + 1; // the number of cell which has been passed. = steps taken to get to the position
     cout << "\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
@@ -44,23 +49,26 @@ int main() {
 }
 
 void count_step() {
-    queue<pair<int, int> > q;
+    queue<pair<int, int> > q; // BFS.
+    // storing the starting position in a queue.
     q.push({0, 0});
+    // mark as visited.
     dist[0][0] = 0;
 
     while (!q.empty()) {
-        pair<int, int> cur = q.front();
+        pair<int, int> cur = q.front(); // when the first round, the starting position is stored in a queue and it's popped out.
         q.pop();
 
+        // checking four directions around the current position to find out the next path.
         for (int dir = 0; dir < 4; dir++) {
-            int nx = cur.X + dx[dir];
-            int ny = cur.Y + dy[dir];
+            int nx = cur.X + dx[dir]; // next x value.
+            int ny = cur.Y + dy[dir]; // next y value.
 
-            if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-            if (board[nx][ny] == 0 || dist[nx][ny] >= 0 ) continue;
+            if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue; // verify if it's inside the board boundary.
+            if (board[nx][ny] == 0 || dist[nx][ny] >= 0 ) continue; // verify if it's a dead end or already visited.
             
-            q.push({nx, ny});
-            dist[nx][ny] = dist[cur.X][cur.Y] + 1;
+            q.push({nx, ny}); // if it's inside the board boundary and not a visited path, store it in a queue.
+            dist[nx][ny] = dist[cur.X][cur.Y] + 1; // update the cumulative step value of the current position, increasing 1.
         }
     }
 }
