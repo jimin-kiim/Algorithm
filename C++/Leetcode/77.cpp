@@ -21,7 +21,28 @@ public:
 
         for (int i = start; i <= n; i++) {
             combination.push_back(i);
-            recurrence(start + 1, result, combination, n, k);
+            recurrence(i + 1, result, combination, n, k);
+            combination.pop_back();
         }
     }
 };
+
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+    Solution solution;
+    vector<vector<int> > result = solution.combine(4, 2);
+    cout << "[";
+    for (vector<int> combination: result) {
+        cout << "[";
+        for (int i = 0; i < combination.size(); i++) {
+            cout << combination[i];
+            if (i != combination.size() - 1) {
+                cout << ",";
+            }
+        }
+        cout << "]";
+    }
+    cout << "]";
+}
