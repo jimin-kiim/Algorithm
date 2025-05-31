@@ -7,7 +7,11 @@ using namespace std;
 int res[9];
 int n, m;
 
+// same structure with 15651.cpp but the difference is in setting the next element for the sequence.
+// since the next element should not be smaller than the number used right before, when selecting the next element for the sequence,
+// it should start from the element that is used right before in the palette for the creating the sequence.
 void func(int start, int k) {
+    // termination condition
     if (k == m) {
         for (int i = 0; i < m; i++) {
             cout << res[i] << " ";
@@ -17,8 +21,10 @@ void func(int start, int k) {
     }
 
     for (int i = start; i <= n; i++) {
+        // building a solution
         res[k] = i;
-        func(i, k + 1);
+        // recurrence
+        func(i, k + 1); // saying that it should start from the element used right now in the palette for building a sequence.
     }
 }
 
