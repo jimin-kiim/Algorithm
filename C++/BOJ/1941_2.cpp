@@ -4,10 +4,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void recurrence(char seats[5][5], int is_visited[5][5], int x, int y, int& result_count, string sequence, int& count_y) {
+void recurrence(char seats[5][5], int is_used[5][5], int x, int y, int& result_count, string sequence, int& count_y) {
     // termination condition
     if (sequence.size() == 7) {
-        if (count_y <= 3) result_count++; // when the number of S is at least 4, among the 7 position values.
+        result_count++; // when the number of S is at least 4, among the 7 position values.
         return;
     }
 
@@ -16,32 +16,29 @@ void recurrence(char seats[5][5], int is_visited[5][5], int x, int y, int& resul
     int dy[4] = {0, -1, 0, 1};
 
     // starting a new sequence; selecting starting point for the new sequence
-    for (int i = x; i < 5; i++) {
-        for (int j = y; j < 5; j++) {
-            // promising function - minimum condition not to proceed building current sequence;
-            if (!is_visited[x][y] && count_y <= 3) {
-                // building a sequence; storing as the element for the sequence and marking as visited.
-                is_visited[x][y] = 1;
-                sequence.push_back(seats[x][y]);
-                if (seats[x][y] == 'Y') count_y++;
+    // promising function - minimum condition not to proceed building current sequence;
+    if (!is_used[x][y] && count_y <= 3) {
+        // building a sequence; storing as the element for the sequence and marking as visited.
+        is_used[x][y] = 1;
+        sequence.push_back(seats[x][y]);
+        if (seats[x][y] == 'Y') count_y++;
 
-                // before calling the recurrence function, determining the parameter value.
-                for (int dir = 0; dir < 4; dir++) {
-                    int nx = x + dx[dir];
-                    int ny = y + dy[dir];
-
-                    // before calling the recurrence function, verify if the parameters are valid as a position coordinates.
-                    if (nx < 0 || nx >= 5 || ny < 0 || ny >= 5) continue;
-                    if (is_visited[nx][ny]) continue;
-                    recurrence(seats, is_visited, nx, ny, result_count, sequence, count_y);
-                }
-
-                // backtracking
-                is_visited[x][y] = 0;
-                if (seats[x][y] == 'Y') count_y--;
-                sequence.pop_back();
-            }
+        // before calling the recurrence function, determining the parameter value.
+        // - getting a new element for the sequence among the connected ones.
+        for (int dir = 0; dir < 4; dir++) {
+            int nx = x + dx[dir];
+            int ny = y + dy[dir];
+            // before calling the recurrence function, verify if the parameters are valid as a position coordinates.
+            // alike a promising function
+            if (nx < 0 || nx >= 5 || ny < 0 || ny >= 5) continue;
+            if (is_used[nx][ny]) continue;
+            recurrence(seats, is_used, nx, ny, result_count, sequence, count_y);
         }
+
+        // backtracking
+        is_used[x][y] = 0;
+        if (seats[x][y] == 'Y') count_y--;
+        sequence.pop_back();
     }
 }
 
@@ -50,7 +47,7 @@ int main() {
     cin.tie(0);
 
     char seats[5][5];
-    int is_visited[5][5];
+    int is_used[5][5];
     int result_count = 0;
     string sequence = "";
 
@@ -63,6 +60,6 @@ int main() {
         }
     }
 
-    recurrence(seats, is_visited, 0, 0, result_count, sequence, result_count );
+    recurrence(seats, is_used, 0, 0, result_count, sequence, result_count );
     cout << result_count;
 }
