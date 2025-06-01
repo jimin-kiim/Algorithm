@@ -11,6 +11,7 @@ int is_used[8];
 int n, m;
 
 void func(int k) {
+    // termination condition
     if (k == m) {
         for (int i = 0; i < m; i++) {
             cout << palette[res_indices[i]] << " ";
@@ -19,11 +20,16 @@ void func(int k) {
         return;
     }
 
+    // start creating a new solution
     for (int i = 0; i < n; i++) {
+        // promising function
         if (is_used[i] != 1) {
+            // building a solution
             res_indices[k] = i;
             is_used[i] = 1;
+            // recurrence
             func(k + 1);
+            // backtracking
             is_used[i] = 0;
         }
     }
