@@ -8,7 +8,10 @@ int n, m;
 int res_indices[8];
 int palette[8];
 
+// since the duplication is allowed, is_used array is not used.
+
 void func(int start, int k) {
+    // termination condition
     if (k == m) {
         for (int i = 0; i < m; i++) {
             cout << palette[res_indices[i]] << " ";
@@ -17,8 +20,11 @@ void func(int start, int k) {
         return;
     }
 
+    // selecting a new subsequent elements
     for (int i = start; i < n; i++) {
+        // building a solution
         res_indices[k] = i;
+        // recurrence
         func(i, k + 1);
     }
 }
