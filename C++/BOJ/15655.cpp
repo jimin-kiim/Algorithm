@@ -19,7 +19,7 @@ void func(int start, int k) {
         return;
     }
 
-    // start creating a new sequence
+    // selecting subsequent elements
     for (int i = start; i < n; i++) {
         // promising function
         if (is_used[i] != 1) {

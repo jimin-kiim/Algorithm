@@ -20,6 +20,7 @@ void func(int start, int k) {
         return;
     }
 
+    // selecting subsequent elements
     for (int i = start; i <= n; i++) {
         // building a solution
         res[k] = i;

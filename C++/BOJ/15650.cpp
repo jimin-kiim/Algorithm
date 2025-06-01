@@ -17,7 +17,7 @@ void func(int start, int k) { // k: 현재까지 택한 수의 개수
         return;
     }
 
-    // creating a new sequence
+    // selecting subsequent elements
     for (int i = start; i <= n; i++) {
         // promising function - not allowing the duplicate usage of an element
         if(!is_used[i]) {

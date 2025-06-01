@@ -20,7 +20,7 @@ void func(int k) {
         return;
     }
 
-    // start creating a new solution
+    // selecting subsequent elements
     for (int i = 0; i < n; i++) {
         // promising function
         if (is_used[i] != 1) {
