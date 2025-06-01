@@ -17,7 +17,9 @@ void func(int k) { // meaning: the sequence is filled out upto kth index.
         return;
     }
 
+    // creating a new permutation
     for (int i = 1; i <= n; i++) {
+        // promising function - blank.
         // building a solution
         permutation[k] = i; // set the number i as the kth number of the sequence.
         // recurrence
