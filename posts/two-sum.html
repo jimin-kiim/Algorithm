@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sum - Algorithm Solution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+        .post-header {
+            margin-bottom: 2rem;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .difficulty {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .easy {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: #e0e0e0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+        }
+
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+
+        .complexity {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .complexity h3 {
+            color: #1976d2;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Problems</a>
+
+        <article>
+            <header class="post-header">
+                <h1 class="post-title">Two Sum</h1>
+                <div class="meta-info">
+                    <span class="difficulty easy">Easy</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Array</span>
+                    <span class="tag">Hash Table</span>
+                </div>
+            </header>
+
+            <div class="content">
+                <section class="section">
+                    <h2>Problem Description</h2>
+                    <p>Given an array of integers nums and an integer target, return indices of the two numbers such
+                        that they add up to target.</p>
+                    <p>You may assume that each input would have exactly one solution, and you may not use the same
+                        element twice.</p>
+                </section>
+
+                <section class="section">
+                    <h2>Solution</h2>
+                    <pre><code>def twoSum(nums, target):
+    hash_map = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in hash_map:
+            return [hash_map[complement], i]
+        hash_map[num] = i
+    return []</code></pre>
+                </section>
+
+                <section class="section">
+                    <h2>Complexity Analysis</h2>
+                    <div class="complexity">
+                        <h3>Time Complexity</h3>
+                        <p>O(n) - We traverse the array once, and each lookup in the hash table is O(1).</p>
+                        <h3>Space Complexity</h3>
+                        <p>O(n) - We store at most n elements in the hash table.</p>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2>Explanation</h2>
+                    <p>The solution uses a hash map to store the numbers we've seen so far. For each number, we:</p>
+                    <ol>
+                        <li>Calculate the complement (target - current number)</li>
+                        <li>Check if the complement exists in our hash map</li>
+                        <li>If it exists, we've found our pair</li>
+                        <li>If not, we add the current number to our hash map and continue</li>
+                    </ol>
+                </section>
+            </div>
+        </article>
+    </div>
+</body>
+
+</html>
