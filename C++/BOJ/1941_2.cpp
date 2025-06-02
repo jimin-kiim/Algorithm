@@ -7,8 +7,7 @@ using namespace std;
 void recurrence(char seats[5][5], int is_used[5][5], int& result_count, vector<pair<int, int> >  sequence, int& count_y) {
     // termination condition
     if (sequence.size() == 7 ) {
-        //if (s_count >= 4)
-            result_count++; // when the number of S is at least 4, among the 7 position values.
+        result_count++; // when the number of S is at least 4, among the 7 position values.
         return;
     }
 
@@ -23,17 +22,15 @@ void recurrence(char seats[5][5], int is_used[5][5], int& result_count, vector<p
         int ny = cur.second + dy[dir];
 
         // promising function - checking if it's a valid position
+        // in the promising function step, do not change any value. just verify the state using if statements.
         if (nx < 0 || nx >= 5 || ny < 0 || ny >= 5) continue;
         if (is_used[nx][ny]) continue;
-        if (seats[nx][ny] == 'Y') count_y++;
-        if (count_y >= 4) {
-            count_y--;
-            continue;
-        }
+        if (seats[nx][ny] == 'Y' && count_y >= 3) continue;
 
         // building a sequence
         is_used[nx][ny] = 1;
         sequence.push_back({nx, ny});
+        if (seats[nx][ny] == 'Y') count_y++;
 
         // recurrence
         recurrence(seats, is_used, result_count, sequence, count_y);
@@ -70,6 +67,7 @@ int main() {
             int count_y = seats[i][j] == 'Y' ? 1 : 0 ;
             recurrence(seats, is_used, result_count, sequence, count_y);
             sequence.pop_back();
+            if (seats[i][j] == 'Y') count_y--;
         }
     }
 
