@@ -7,24 +7,29 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(),nums.end()); // not to make [4,1], [1,4]. [1,4] [4,1] is allowed.
         vector<vector<int>> result;
         vector<int> subset;
+        set<vector<int>> seen;
 
+        // 공집합부터 원본 크기만큼
         for (int length = 0; length <= nums.size(); length++) {
-            recurrence(0, nums, result, subset, length);
+            recurrence(0, nums, result, subset, length, seen);
         }
         return result;
     }
 
-    void recurrence(int start, vector<int> nums, vector<vector<int>>& result, vector<int> subset, int length) {
+    void recurrence(int start, vector<int> nums, vector<vector<int>>& result, vector<int> subset, int length, set<vector<int>>& seen) {
         if (subset.size() == length) {
+            if (seen.count(subset)) return;
+            seen.insert(subset);
             result.push_back(subset);
             return;
         }
 
         for (int i = start; i < nums.size(); i++) {
             subset.push_back(nums[i]);
-            recurrence(i + 1, nums, result, subset, length);
+            recurrence(i + 1, nums, result, subset, length, seen);
             subset.pop_back();
         }
     }
@@ -48,3 +53,10 @@ int main() {
     }
     cout << "]";
 }
+
+/*
+ * Mistakes
+ * set<int> key (subset.begin(), subset.end()); : [1,2], [1,1,2], [1,2,2], [1,2,2,2] 등을 모두 같은 값 {1,2}으로 인식.
+ *
+ *
+ */
