@@ -9,13 +9,14 @@ int palette[21];
 int cnt = 0;
 
 void func(int cur, int sum) {
-    if (cur == n) { // termination
+    // termination condition
+    if (cur == n) { // when reached the leaf node.
         if (sum == s) cnt++;
         return;
     }
 
-    func(cur + 1, sum); // excluding
-    func(cur + 1, sum + palette[cur]); // including
+    func(cur + 1, sum); // excluding current number
+    func(cur + 1, sum + palette[cur]); // including current number
 }
 
 int main() {
