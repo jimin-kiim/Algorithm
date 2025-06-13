@@ -1,11 +1,5 @@
 # Algorithm
 
-When we faced with a problem, it is crucial to devise a step-by-step solution algorithm and validate its effectiveness through proofs. This entails problem modeling, algorithm design, and analysis. 
-
-Drawing from established classical algorithms and problems aids in addressing new problems efficiently. By adopting this approach, problems can be tackled systematically, providing sound solutions with evidential support.
-
-This respository contains the classical algorithms and problems and trace of practicing PS with Leetcode, BOJ and so on.
-
 - [Foundation Introduction][Foundation Introduction]
 - [Design and Analysis of Alg.][Design and Analysis of Alg.]
   - Brute Force
